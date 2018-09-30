@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 void	print_bits(unsigned char octet)
 {
@@ -12,5 +13,6 @@ void	print_bits(unsigned char octet)
       else
 	write(1, "0", 1);
       cmp /= 2;
+      printf("cmp: %d\n", cmp);
     }
 }
