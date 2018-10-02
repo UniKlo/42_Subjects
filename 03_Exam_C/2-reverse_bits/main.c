@@ -12,7 +12,9 @@
 
 #include <unistd.h>
 
-unsigned char	reverse_bits(unsigned char octet);
+unsigned char	reverse_bits1(unsigned char octet);
+
+unsigned char   reverse_bits2(unsigned char octet);
 
 void	print_bits(unsigned char octet)
 {
@@ -31,10 +33,14 @@ void	print_bits(unsigned char octet)
 
 int		main()
 {
-	write(1, "Org: /n", 6);
-	print_bits(192);
+	write(1, "Org: ", 5);
+	print_bits(4);
 	write(1, "\n", 1);
-	write(1, "New: /n", 6);
-	print_bits(reverse_bits(192));
+	write(1, "New: ", 5);
+	print_bits(reverse_bits1(4));
+	write(1, "\n", 1);
+	write(1, "New: ", 5);
+        print_bits(reverse_bits2(4));
+        write(1, "\n", 1);
 	return (0);
 }
