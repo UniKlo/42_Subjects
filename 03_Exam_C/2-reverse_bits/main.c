@@ -1,11 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/01 14:13:33 by khou              #+#    #+#             */
+/*   Updated: 2018/10/01 16:53:15 by khou             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
 
 unsigned char	reverse_bits(unsigned char octet);
 
-int	main(int argc, char **argv)
+void	print_bits(unsigned char octet)
 {
-  if (argc == 2)
-    printf(reverse_bits(*argv[1]));
-  else
-    printf("Wrong Input.");
-  return (0);
+	unsigned char	cmp;
+
+	cmp = 128;
+	while (cmp)
+	{
+		if (octet & cmp)
+			write(1, "1", 1);
+		else
+			write(1, "0", 1);
+		cmp >>= 1;
+	}
+}
+
+int		main()
+{
+	write(1, "Org: /n", 6);
+	print_bits(192);
+	write(1, "\n", 1);
+	write(1, "New: /n", 6);
+	print_bits(reverse_bits(192));
+	return (0);
 }
