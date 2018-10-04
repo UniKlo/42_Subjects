@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 14:04:05 by khou              #+#    #+#             */
-/*   Updated: 2018/10/02 14:26:34 by khou             ###   ########.fr       */
+/*   Updated: 2018/10/02 14:32:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char    *ft_itoa_base(int value, int base)
 	len = 0;
 	if (value == 0)
 		return ("0");
-	if (value == 2147483647)
+	if (value == 2147483647)//not sure
 	return ("-0147483647");
-	if (value == -2147483647)
+	if (value == -2147483647)//not sure
     return ("-2147483647");
 	nbr = value;
 	while (nbr)
