@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.h                                             :+:      :+:    :+:   */
+/*   only_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+        */
+/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 13:14:10 by zaz               #+#    #+#             */
-/*   Updated: 2018/10/04 10:56:34 by khou             ###   ########.fr       */
+/*   Created: 2018/10/04 11:10:25 by khou              #+#    #+#             */
+/*   Updated: 2018/10/04 11:10:41 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct s_list t_list;
+#include <unistd.h>
 
-struct s_list
+int main()
 {
-	int     data;
-	t_list  *next;
-};
-
-int cmp(int a, int b);
-
-t_list  *sort_list(t_list* lst, int (*cmp)(int, int));
+    write (1, "a", 1);
+    return (0);
+}
