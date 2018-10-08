@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_op.h                                            :+:      :+:    :+:   */
+/*   aff_first_param.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 11:20:25 by khou              #+#    #+#             */
-/*   Updated: 2018/10/08 11:20:28 by khou             ###   ########.fr       */
+/*   Created: 2018/10/08 11:23:32 by khou              #+#    #+#             */
+/*   Updated: 2018/10/08 11:29:32 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DO_OP_H
-# define DO_OP_H
-
-#include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 
-typedef int	(*fun_table)(int a, int b);
-
-fun_table	dispatch(char c);
-#endif
+int 	main(int argc, char **argv)
+{
+	if (argc > 1)
+	{
+		while(*argv[1])
+			write(1, argv[1]++, 1);
+	}
+	write(1, "\n", 1);
+	return (0);
+}

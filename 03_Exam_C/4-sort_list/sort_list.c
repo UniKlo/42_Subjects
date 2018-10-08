@@ -6,13 +6,14 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 22:45:09 by khou              #+#    #+#             */
-/*   Updated: 2018/10/04 10:48:17 by khou             ###   ########.fr       */
+/*   Updated: 2018/10/08 13:10:52 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-int		count_size(t_list *lst){ int size;  for (size = 0; lst; size++) lst = lst->next; return (size); }
+int		count_size(t_list *lst){
+	int size;  for (size = 0; lst; size++) lst = lst->next; return (size);}
 
 t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 {
