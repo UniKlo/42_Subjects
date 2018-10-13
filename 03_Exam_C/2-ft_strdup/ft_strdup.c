@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 20:38:17 by khou              #+#    #+#             */
-/*   Updated: 2018/10/12 21:18:23 by khou             ###   ########.fr       */
+/*   Updated: 2018/10/12 21:21:47 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char    *ft_strdup(char *src)
 	return (beg);
 }
 
+
+/* testing*/
 #include <stdio.h>
 
 int main()
@@ -45,3 +47,4 @@ int main()
 	printf("str1:%s\n", ft_strdup(str1));
 	return (0);
 }
+
