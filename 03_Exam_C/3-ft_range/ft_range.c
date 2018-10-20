@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 09:30:43 by exam              #+#    #+#             */
-/*   Updated: 2018/10/16 10:27:47 by exam             ###   ########.fr       */
+/*   Updated: 2018/10/16 13:26:59 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int     *ft_range(int start, int end)
 	return (beg);
 }
 
-/*
 #include <stdio.h>
 #include <limits.h>
 
@@ -65,7 +64,7 @@ int main()
 //	test = ft_range(1, 3);
 //	test = ft_range(-1, 2);
 //	test = ft_range(0, 0);
-	test = ft_range(0, -3);
+	test = ft_range(, -3);
 //	test = ft_range(INT_MIN, INT_MAX);
 	int l = 4;
 	int i = 0;
@@ -77,4 +76,3 @@ int main()
 	printf("\n");
 	return(0);
 }
-*/
