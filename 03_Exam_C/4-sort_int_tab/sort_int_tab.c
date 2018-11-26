@@ -6,40 +6,39 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 23:18:13 by khou              #+#    #+#             */
-/*   Updated: 2018/11/19 23:45:26 by khou             ###   ########.fr       */
+/*   Updated: 2018/11/25 18:09:10 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include <stdio.h>
 
 void	sort_int_tab(int *tab, unsigned int size)
 {
-	int i = 0;
+	unsigned int i = 0;
+	unsigned int j;
 	int tmp = 0;
-	if (size == 1)
+	if (size == 0)
 		return ;
-	tab[size-1] = '\0';
-	while (size - 2)
+	while (i < size)
 	{
-		i = 0;
-		while(tab[i + 1])
+		j = 0;
+		while(j + 1 < size)
 		{
-			if (tab[i] > tab[i + 1])
+			if (tab[j] > tab[j + 1])
 			{
-				tmp = tab[i];
-				tab[i] = tab[i + 1];
-				tab[i + 1] = tmp;
+				tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
 			}
-			i++;
+			j++;
 		}
-		size--;
+		i++;
 	}
-/*
+
     i =	0;
-    while (tab[i])
+    while (i < size - 1)
         printf("%d ", tab[i++]);
     printf("\n");
-*/	
 	return ;
 }
 
@@ -47,9 +46,10 @@ void	sort_int_tab(int *tab, unsigned int size)
 
 int		main()
 {
-	int tbl[6] = {7, 6, 5, 4, 1};
+	int tbl[5] = {7, 6, 5, 4, 1};
 	int	i = 0;
-	while (tbl[i])
+	int size = 5;
+	while (i < size)
 		printf("%d ", tbl[i++]);
 	printf("\n");
 	sort_int_tab(tbl, 6);
