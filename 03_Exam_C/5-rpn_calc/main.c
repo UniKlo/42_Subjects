@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 17:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/12/31 02:15:47 by khou             ###   ########.fr       */
+/*   Updated: 2018/12/31 02:38:34 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,13 @@ void	rpn_cal(char *str)
 	int		stack[BUFF_SIZE];
 	fun_table	f;
 
-	i = 1;
-	top = 0;
+	top = -1;
 	while (*str)
 	{
-//		if (str[i] >= '0' && str[i] <= '9')
 		if (*str >= '0' && *str <= '9')
 		{
-			stack[++top] = atoi(str); //stack array starts from id 1
-			str += len_nbr(stack[top]);//move pointer address by whole nbr
+			stack[++top] = atoi(str);
+			str += len_nbr(stack[top]);
 		}
 		if (*str == '+' || *str == '-' || *str == '*' || *str == '/')
 		{
@@ -54,7 +52,7 @@ void	rpn_cal(char *str)
 		}
 		str++;
 	}
-	if (top != 1)
+	if (top != 0)
 		printf("Error");
 	else
 		printf("%d\n", stack[top]);
