@@ -5,13 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/17 20:53:01 by khou              #+#    #+#             */
-/*   Updated: 2018/10/20 02:19:06 by khou             ###   ########.fr       */
+/*   Created: 2019/01/12 15:58:16 by khou              #+#    #+#             */
+/*   Updated: 2019/01/13 17:08:03 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* an int is 4 bytes, an unsigned char is 1 byte
+there are 10 int in the array, and if the array is represented in unsigned char,
+the size of array is 40 (10 * 4).
+And each int represents in a group of 4 unsigned char. 
+for print_memory:
+each unsigned char is converted into two-digit hex.
+ */
+
 #include <unistd.h>
-//#include <stdio.h>
+#include <stdio.h>
 
 void	print_hex(int tlb)
 {
@@ -22,51 +30,56 @@ void	print_hex(int tlb)
 
 void	print_memory(const void *addr, size_t size2)
 {
-	unsigned char *tlb = (unsigned char*)addr;//to get a byte
-	int j = 0;
+	unsigned char *tlb = (unsigned char*)addr;
+	int i = 0;
 	int size = size2;
-	
-	while (size)
+
+//	printf("sizeof: %zu\n", size2);
+	while (size > 0)
 	{	
-		int i = 0;
+		int col = 0;
 		int count = 0;
-        while (i < 16 && i++ < size)
+        while (col < 16 && col < size)
         {
-			print_hex(tlb[j++]);
+//			printf("tlb[%d]: %d\n", i, tlb[i] );
+			print_hex(tlb[i++]);
 			count++;
 			if (count == 2)
 			{
 				write(1, " ", 1);
 				count = 0;
 			}
+			col++;
         }
-		int a = i;
+		int a = col;
+//		printf("col: %d, i: %d, size: %d\n", col, i, size);
 		while (a < 16)
 		{
 			write(1, "          ", 10);
 			a += 4;
 		}
-		j -= i;
-		i = 0;
-		while (i++ < 16 && size-- > 1)
+		i -= col;// i = 32
+		col = 0;
+		while (col < 16 && size > 0  )
 		{
-			if (tlb[j] > 32 && tlb[j] < 127)
-				write(1, &tlb[j], 1);
+//			printf("tlb[%d]: %d\n", i, tlb[i]);
+			if (tlb[i] > 32 && tlb[i] < 127)
+				write(1, &tlb[i], 1);
 			else
 				write(1, ".", 1);
-		 	j++;
+		 	i++;
+			col++;
+			size--;
 		}
 		write(1, "\n", 1);
 	}
 }
 
-
-#include <stdio.h>
-
-int	main(void)
+int		main()
 {
-	int	tab[10] = {256, 23, 150, 255, 12, 16,  21, 42};
+	int	table[10] = {0, 23, 150, 255,  12, 16,  42, 103};
+//	int table[2] = {-1 , 9};
 
-	print_memory(tab, sizeof(tab));
+	print_memory(table, sizeof(table));
 	return (0);
 }

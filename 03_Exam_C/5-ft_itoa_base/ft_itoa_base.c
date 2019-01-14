@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/02 14:04:05 by khou              #+#    #+#             */
-/*   Updated: 2018/10/02 14:32:49 by khou             ###   ########.fr       */
+/*   Created: 2019/01/12 16:13:16 by khou              #+#    #+#             */
+/*   Updated: 2019/01/12 16:18:30 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char    *ft_itoa_base(int value, int base)
 	len = 0;
 	if (value == 0)
 		return ("0");
-	if (value == 2147483647)//not sure
-	return ("-0147483647");
-	if (value == -2147483647)//not sure
+	if (value == 2147483647)
+	return ("+2147483647");
+	if (value == -2147483647)
     return ("-2147483647");
 	nbr = value;
 	while (nbr)
