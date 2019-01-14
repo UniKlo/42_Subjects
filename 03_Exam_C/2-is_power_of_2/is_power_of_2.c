@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:27:43 by khou              #+#    #+#             */
-/*   Updated: 2018/10/12 21:49:37 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/14 13:33:50 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int is_power_of_2(unsigned int n)
 		return (0);
 }
 
-int is_power_of_22(unsigned n)
+int is_power_of_22(unsigned int n)
 {
 	if (n == 0)
 		return (0);
