@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 13:44:57 by khou              #+#    #+#             */
-/*   Updated: 2019/01/14 16:51:20 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/14 18:53:58 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_itoa_base(int value, int base);
 int	main()
 {
 	printf("          0,  2: %s\n", ft_itoa_base(0, 2));
-//	printf("      --223, 10: %s\n", ft_itoa_base(--223, 10));
+	printf("  521975685,  4: %s\n", ft_itoa_base(521975685, 4));
 	printf(" 1552085757,  8: %s\n", ft_itoa_base(1552085757, 8));
 	printf(" 2147483647, 10: %s\n", ft_itoa_base(2147483647, 10));
 	printf("-2147483648, 10: %s\n", ft_itoa_base(-2147483648, 10));
