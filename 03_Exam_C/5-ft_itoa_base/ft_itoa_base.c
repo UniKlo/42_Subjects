@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:03:02 by khou              #+#    #+#             */
-/*   Updated: 2019/01/13 18:13:57 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/14 16:50:55 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ char    *ft_itoa_base(int value, int base)
 	char	*nbr_base = "0123456789ABCDEF";
 
 	len = 0;
-	if (value == 0)
+	if (value == 0 || !value)
 		return ("0");
-	if (value == 2147483647)
-	return ("2147483647");
 	if (value == -2147483648)
     return ("-2147483648");
 	nbr = value;

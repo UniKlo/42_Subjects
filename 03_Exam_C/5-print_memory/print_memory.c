@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 15:58:16 by khou              #+#    #+#             */
-/*   Updated: 2019/01/13 17:08:03 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/14 16:52:37 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ each unsigned char is converted into two-digit hex.
  */
 
 #include <unistd.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 void	print_hex(int tlb)
 {
