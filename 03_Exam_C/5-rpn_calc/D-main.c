@@ -5,21 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 18:17:42 by khou              #+#    #+#             */
-/*   Updated: 2019/01/15 18:33:10 by khou             ###   ########.fr       */
+/*   Created: 2019/01/13 18:19:43 by khou              #+#    #+#             */
+/*   Updated: 2019/01/13 18:22:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "do_op.h"
 
 int		len_nbr(int nbr)
 {
 	int		len;
-
+	
 	len = 0;
-	if (nbr < 0)
-		len++;
 	while (nbr)
 	{
 		nbr/= 10;
@@ -28,48 +27,32 @@ int		len_nbr(int nbr)
 	return (len);
 }
 
-int		operate(int a, int b, char c)
-{
-	if (c == '+')
-		return (a + b);
-	else if (c == '-')
-		return (a - b);
-	else if (c == '*')
-		return (a * b);
-	else if (c == '/')
-		return (a / b);
-	else if (c == '%')
-		return (a % b);
-	return (0);
-}
-
 void	rpn_cal(char *str)
 {
-	int		tmp;
+	int		i;
 	int		top;
-	int		stack[4000];
+	int		stack[BUFF_SIZE];
+	fun_table	f;
 
 	top = -1;
 	while (*str)
 	{
-		if ((*str >= '0' && *str <= '9') ||
-			(*str == '-' && ( *(str + 1) >= '0' && *(str + 1) <= '9')))
+		if (*str >= '0' && *str <= '9')
 		{
 			stack[++top] = atoi(str);
 			str += len_nbr(stack[top]);
 		}
-		else if (*str == '+' || *str == '-' || *str == '*' ||
-				 *str == '/' || *str == '%')
+		if (*str == '+' || *str == '-' || *str == '*' || *str == '/')
 		{
-			if (top == 0)
+			if ((top - 2) < -1)
 			{
-				top = 1;
+				top -= 2;
 				break;
 			}
-			else
+			if((f = dispatch(*str)) != NULL)
 			{
-				tmp = operate(stack[top - 1], stack[top], *str);
-				stack[--top] = tmp;
+				i = f(stack[top - 1], stack[top]);
+				stack[--top] = i;
 			}
 		}
 		str++;
@@ -79,7 +62,6 @@ void	rpn_cal(char *str)
 	else
 		printf("%d\n", stack[top]);
 }
-
 int		main(int argc, char **argv)
 {
 	if (argc == 2)
