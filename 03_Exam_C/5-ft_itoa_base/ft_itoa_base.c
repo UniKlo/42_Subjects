@@ -5,50 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/13 18:03:02 by khou              #+#    #+#             */
-/*   Updated: 2019/01/14 16:50:55 by khou             ###   ########.fr       */
+/*   Created: 2019/01/17 16:56:58 by khou              #+#    #+#             */
+/*   Updated: 2019/01/17 18:06:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char    *ft_itoa_base(int value, int base)
+int		nbrlen(int nbr, int base)
 {
-	int		nbr;
-	int		len;
-	char	*new;
-	char	*nbr_base = "0123456789ABCDEF";
-
-	len = 0;
-	if (value == 0 || !value)
-		return ("0");
-	if (value == -2147483648)
-    return ("-2147483648");
-	nbr = value;
+	int l = 0;
 	while (nbr)
 	{
+		l++;
 		nbr /= base;
-		len++;
 	}
-    nbr = value;
-    if (value < 0)
-    {
-        if (base == 10)
-            len++;
-		value = -value;
-    }
-
-
-	if (!(new = (char *)malloc(sizeof(char) * len)))
-		  return (NULL);
-	while (value)
-	{
-		new[--len] = nbr_base[value % base];
-		value /= base;
-	}
-	if (nbr < 0 && base == 10)
-		new[0] = '-';
-	
-	
-	return(new);
+	return (l);
 }
+
+char    *ft_itoa_base(int nbr, int base)
+{
+	char	*str = malloc(sizeof(char) * 4000);
+	char	*nbr_base = "0123456789ABCDEF";
+
+	if (!str)
+		return (NULL);
+	if (nbr == 0)
+		return ("0");
+	if (nbr == -2147483648 && base == 10 )
+		return ("-2147483648");
+
+	int end = 0;
+	if (nbr < 0)
+	{
+		str[0] = '-';
+		end++;
+		nbr = -nbr;
+	}
+	end += nbrlen(nbr, base);
+	str[end] = '\0';
+	end--;
+	while (nbr)
+	{
+		str[end--] = nbr_base[nbr % base];
+		nbr /= base;
+	}
+	return(str);
+}
+
+/*
+#include <stdio.h>
+
+int		main()
+{
+	printf("nbr: %s\n", ft_itoa_base(-2147483648, 10)) ;
+	
+}
+*/

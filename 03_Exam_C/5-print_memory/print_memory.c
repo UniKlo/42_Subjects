@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 15:58:16 by khou              #+#    #+#             */
-/*   Updated: 2019/01/14 16:52:37 by khou             ###   ########.fr       */
+/*   Updated: 2019/01/16 19:43:46 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	print_memory(const void *addr, size_t size2)
 
 int		main()
 {
-	int	table[10] = {0, 23, 150, 255,  12, 16,  42, 103};
+	int	table[13] = {0, 23, 150, 255,  12, 16,  42, 103, -1};
 //	int table[2] = {-1 , 9};
 
 	print_memory(table, sizeof(table));
