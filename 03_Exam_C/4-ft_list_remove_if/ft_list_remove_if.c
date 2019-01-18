@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/14 18:02:16 by khou              #+#    #+#             */
-/*   Updated: 2019/01/14 18:39:58 by khou             ###   ########.fr       */
+/*   Created: 2019/01/17 19:55:38 by khou              #+#    #+#             */
+/*   Updated: 2019/01/17 20:02:18 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 				free(*begin_list);
 		}
 		else
-			if ((*begin_list)->next)
-				begin_list = (*begin_list)git ->next;
+			begin_list =& (*begin_list)->next;
 	}
 	
 }
