@@ -1,0 +1,77 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e1z1r4p28.42.us.org
+Darwin 17.4.0 x86_64
+$> date
+Wed Jan  9 15:32:25 PST 2019
+$> gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+$> clang --version
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2019/c-exam-alone-in-the-dark-beginner/practice-exam_20190109/khou2
+
+= Git history ==================================================================
+$> git -C /var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user log --pretty='%H - %an, %ad : %s'
+0155959dd4feab20a17567c1bd2c406af7dc212c - Khloe Hou, Wed Jan 9 15:32:15 2019 -0800 : 5
+3ddfbcedaae4e02204a358ada4822fe8cf17ab00 - Khloe Hou, Wed Jan 9 15:21:40 2019 -0800 : 4
+475226963b2353d046dde161214c90a5f342bba4 - Khloe Hou, Wed Jan 9 15:06:02 2019 -0800 : 3
+86cdef630be0e03ef03e66643a148acf5df0b9b6 - Khloe Hou, Wed Jan 9 13:06:51 2019 -0800 : 2
+88c524ecb2ada8d4c5a0b485abffaca4c3af65e4 - Khloe Hou, Wed Jan 9 12:43:16 2019 -0800 : 1
+1d8ae811471549eee204f41e1e5f24a30c2a0e6e - Khloe Hou, Wed Jan 9 12:40:16 2019 -0800 : 1
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  1393 Jan  9 15:32 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought   102 Jan  9 15:32 inter
+drwxr-xr-x  3 deepthought  deepthought   102 Jan  9 15:32 maff_revalpha
+drwxr-xr-x  3 deepthought  deepthought   102 Jan  9 15:32 only_a
+drwxr-xr-x  3 deepthought  deepthought   102 Jan  9 15:32 paramsum
+drwxr-xr-x  3 deepthought  deepthought   102 Jan  9 15:32 rot_13
+drwxr-xr-x  3 deepthought  deepthought   102 Jan  9 15:32 sort_int_tab
+
+/var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user/inter:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1327 Jan  9 15:32 inter.c
+
+/var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user/maff_revalpha:
+total 8
+-rw-r--r--  1 deepthought  deepthought  997 Jan  9 15:32 maff_revalpha.c
+
+/var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user/only_a:
+total 8
+-rw-r--r--  1 deepthought  deepthought  961 Jan  9 15:32 only_a.c
+
+/var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user/paramsum:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1131 Jan  9 15:32 paramsum.c
+
+/var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user/rot_13:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1399 Jan  9 15:32 rot_13.c
+
+/var/folders/rh/4rvn7q653tn61l7l6qr81fnc0000gp/T/tmplLPPHp/user/sort_int_tab:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1203 Jan  9 15:32 sort_int_tab.c
+ 
+= sort_int_tab =================================================================
+$> gcc -Wextra -Wall -Werror main.c sort_int_tab.c -o user_exe 
+
+= Test 1 ===================================================
+$> ./x78wuiz38d52c19vbtmgebpg
+$> diff -U 3 user_output_test1 test1.output | cat -e
+
+Diff OK :D
+Grade: 1
+
+= Final grade: 1 ===============================================================
