@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:27:59 by khou              #+#    #+#             */
-/*   Updated: 2019/01/07 20:49:12 by khou             ###   ########.fr       */
+/*   Updated: 2019/02/17 18:33:08 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		main()
     ret = ft_atoi_base(str1, str_base1);
 	printf("%d\n", ret);
 
-	char str2[] = "aB";
+	char str2[] = "0aB";
     int str_base2 = 16;
     ret = ft_atoi_base(str2, str_base2);
 	printf("%d\n", ret);
