@@ -1,0 +1,96 @@
+body{
+  justify-content: center;
+  background-color: #5E5E5E
+}
+.header{
+  background-color: #919191;
+  margin-left:150px; margin-right:150px;
+  text-align: left;
+  width: 1100px; height: 110px;
+  border-radius: 10px; box-shadow: 7px 7px 10px;
+  display: flex; justify-content:space-between;
+}
+#title{
+  flex: none;
+  width:330px;height:90px;
+  margin:10px;
+}
+.header div{
+  flex: none;
+  display: flex; flex-wrap: wrap;
+  width:20px; height:110px;
+  padding-top:5px; padding-bottom:5px;
+  align-content: space-between;
+}
+.header a{width: 30px; height: 30px;}
+.header img{
+  flex: none;
+  height: 15px; width: 15px;
+}
+.loupe{
+	width: 150px; height: 80px;
+	position: absolute; left: 1040px; top:15px;
+}
+.main_part{
+  width: 1080px;
+  margin-left:160px; margin-right:160px; margin-top:15px;
+  display: flex;
+  justify-content: space-around;
+}
+.side{
+  flex: none;
+  width: 120px; height: 350px;
+  background-color: #919191;
+  border-radius: 10px; box-shadow: 7px 7px 10px black;
+  display: flex; flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+}
+.middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 450px;
+  background-color: #919191;
+  border-radius: 10px; box-shadow: 7px 7px 10px;
+}
+.middle img{
+  flex: none;
+  width:97%; height: 97%;
+}
+#apple{
+	width:90px; height:110px;
+	position:absolute; left:570px; top:400px;
+}
+#ikea{
+	width:130px; height:70px;
+	position:absolute; left:940px; top:400px;
+}
+.side .item{
+  width: 55px;
+  height: 55px;
+  margin:5px;
+}
+#Look{border: 5px solid red;}
+#brick{
+	display:flex; flex-wrap:wrap;
+	width: 90px;
+	margin:0px; padding:0px;
+}
+.special_brick{
+	width:30px; height:27px;
+	padding:0px; margin:0px; 
+}
+.pop_out{
+  position: absolute; left:120px; top: 520px;
+  padding: 8px;
+  width: 400px; height: 120px;
+  background-color: #8CFF8C;
+  border-radius: 10px; box-shadow: 7px 7px 10px black;
+  font-size: 13px;
+}
+#btn:hover{
+  background-color: #FFFF8C;
+  border: 10px black;
+}
