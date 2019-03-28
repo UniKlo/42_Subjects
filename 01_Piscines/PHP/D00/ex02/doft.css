@@ -59,11 +59,11 @@ body{
   flex: none;
   width:97%; height: 97%;
 }
-#apple{
+#ikea{
 	width:90px; height:110px;
 	position:absolute; left:570px; top:400px;
 }
-#ikea{
+#apple{
 	width:130px; height:70px;
 	position:absolute; left:940px; top:400px;
 }

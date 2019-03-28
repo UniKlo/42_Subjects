@@ -1,0 +1,97 @@
+body{
+    background-color: rgb(39, 33, 33)
+  }
+
+:root {
+	--header-font-size: 1.2vw;
+	--header-img-w: 100%;
+	--type-w: 4vw;
+	--type-border-w: 1px;
+	--ele-margin: 0.1vw;
+	--ele-num-size: 1vw;
+	--ele-font-size: 1.5vw;
+}
+
+header {
+	text-align: center;
+    font-size: var(--header-font-size);
+    color: white;
+}
+
+header img {
+	width: var(--header-img-w);
+	height: 10vw;
+}
+
+.type {
+	min-width: var(--type-w);
+	width: var(--type-w);
+	height: var(--type-w);
+	position: relative;
+	text-align: center;
+	border: solid white var(--type-border-w);
+}
+
+.other-nonmetals {
+	background-color: #22FF22;
+}
+
+.noble-gases {
+	background-color: #77CCFF;
+}
+
+.alkali-metals {
+	background-color: #FFCC33;
+}
+
+.alkaline-earth-metals {
+	background-color: #FFFF44;
+}
+
+.metalloids {
+	background-color: #77DD88;
+}
+
+.post-transition-metals {
+	background-color: #99DDCC;
+}
+
+.transition-metals {
+	background-color: #DDBBBB;
+}
+
+.lanthanoids {
+	background-color: #FFBB99;
+}
+
+.actionoids {
+	background-color: #EEBBDD;
+}
+
+.default-bg {
+	background-color: #DDDDDD;
+}
+
+.atomic-weight {
+	/* top right */
+	text-align: right;
+	position: absolute;
+	margin: 0;
+	top: var(--ele-margin);
+	right: var(--ele-margin);
+	font-size: var(--ele-num-size);
+}
+
+.element {
+	font-size: var(--ele-font-size);
+}
+
+.number {
+	/* lower left */
+	text-align: left;
+	position: absolute;
+	margin: 0;
+	left: var(--ele-margin);
+	bottom: var(--ele-margin);
+	font-size: var(--ele-num-size);
+}
