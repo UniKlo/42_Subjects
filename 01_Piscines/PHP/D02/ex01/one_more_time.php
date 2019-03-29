@@ -8,6 +8,21 @@ function ft_exit($str)
 	exit();
 }
 
+function check_day_of_week($str)
+{
+	switch (strtolower($str))
+	{
+		case "lundi": return ("Mon");
+		case "mardi": return ("Tue");
+		case "mercredi": return ("Wed");
+		case "jeudi": return ("Thur");
+		case "vendredi": return ("Fri");
+		case "samedi": return ("Sat");
+		case "dimanche": return ("Sun");
+	}
+	ft_exit("Wrong Format");
+}
+
 function check_month($str)
 {
 	switch (strtolower($str))
@@ -33,6 +48,7 @@ $arr = array_filter(explode(" ", $argv[1]));
 if ($argc != 2 || count($arr) != 5)
     ft_exit("Wrong Format");
 
+check_day_of_week($arr[0]);
 $day = $arr[1];
 $month = check_month($arr[2]);
 $year = $arr[3];
@@ -43,5 +59,5 @@ $date = join('/', $date);
 $date = array($date, $time);
 $ret= strtotime(join(' ', $date));
 
-echo $ret;
+echo "$ret\n";
 ?>

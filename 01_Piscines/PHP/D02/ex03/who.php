@@ -20,6 +20,6 @@
 	}
 	sort($arr);
 	foreach($arr as $value)
-		echo ($value[0] . "\t" . $value[1] . "\t" . $value[2] . "\n");
+		echo ($value[0] . "     " . $value[1] . "  " . $value[2] . "\n");
 	fclose($file);
 ?>
