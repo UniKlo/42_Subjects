@@ -3,7 +3,7 @@ if ($_POST["login"] && $_POST["oldpw"] && $_POST["newpw"] && $_POST["submit"] ==
 {
     $dir_path = "./htdocs/private";
     $fil_path = $dir_path."/passwd";
-    $account = file_get_contents($fil_path);
+    $account = unserialize(file_get_contents($fil_path));
     if ($account) 
     {
         $save = false;
@@ -14,9 +14,9 @@ if ($_POST["login"] && $_POST["oldpw"] && $_POST["newpw"] && $_POST["submit"] ==
             {
                 $save = true;
                 $account[$key]["passwd"] = hash("whirlpool", $_POST["newpw"]);
-                file_put_contents($fil_path, $account);
+                file_put_contents($fil_path, serialize($account));
                 echo "Password is set.\n";
-                echo "<html><body><a href='./index.php'>Go to homepage</a></body></html>\n";
+                echo "<html><body><a href='./landing.php'>Go to homepage</a></body></html>\n";
                 break;
             }
         }

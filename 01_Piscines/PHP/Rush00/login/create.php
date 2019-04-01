@@ -29,8 +29,8 @@ function create($login, $passwd)
 		$account[] = $user;
 		file_put_contents($fil_path, serialize($account));
 		cookie_crisp('set', $_POST["login"]);
-		echo "Account for ". $_POST["login"] . " is created!\n";
-		echo "<html><body><a href='./login.html'>Pls login again</a></body></html>\n";
+		echo "<h1>Account for ". $_POST["login"] . " is created!</h1><br>";
+		echo "<h1><a href='./login.html'>Pls login again</a></h1><br>";
 	}
 } 
 ?>

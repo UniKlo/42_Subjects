@@ -1,0 +1,54 @@
+body {
+  background-color: #cccccc;
+  font-family: monospace
+}
+
+footer {
+  background-color: rgb(49, 49, 49);
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+label{
+  font-size: 20pt;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(255, 200, 200);
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+.container {
+  padding: 16px;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}

@@ -1,2 +1,0 @@
-model;price;quantity;img\
-001;52;20;img1\

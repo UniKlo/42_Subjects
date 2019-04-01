@@ -1,0 +1,5 @@
+id|---type-----|price|G|Q|address;<br />
+00|Black Reading Glasses|glasses|$25.89|M|6|https://github.com/hirenpateldotnex/rush00_src/blob/master/01.png?raw=true;<br />
+01|Thin Reading Glasses|glasses|$0.21|W|6|https://github.com/hirenpateldotnex/rush00_src/blob/master/02.png?raw=true;<br />
+02|Aviator Brown Sunglasses|sunglasses|$26.89|M|1|https://github.com/hirenpateldotnex/rush00_src/blob/master/12.png?raw=true;<br />
+03|Aviator Balck Sunglasses|sunglasses|$25.89|W|4|https://github.com/hirenpateldotnex/rush00_src/blob/master/glasses.png?raw=true<br />
