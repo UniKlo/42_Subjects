@@ -1,4 +1,3 @@
-
 <- Matrix ----------------------------------------------------------------------
 The Matrix class handles 4x4 Matrixs.
 it's got a finite constante values for the preset :
