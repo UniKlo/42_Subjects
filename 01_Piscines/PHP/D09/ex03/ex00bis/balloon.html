@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Balloon</title>
+    <script src="https://ajax.googleapis.com/ajax/lib_size/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .balloon {
+            border-radius: 50%;
+        }
+        #b0 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon" id="b0"></div>
+    <script>
+        let colors = ["red", "green", "blue"];
+        let i_color = 0;
+        let b_size = 200;
+        let b;
+        $(document).ready(() => {
+            b = $("#b0");
+            b.click(grow_b);
+            b.mouseleave(shrink_b);
+        });
+        function grow_b() {
+            b_size += 10;
+            if (b_size > 420)
+                b_size = 200;
+            i_color += 1;
+            if (i_color > 2)
+                i_color = 0;
+            refresh_b(i_color);
+        }
+        function shrink_b() {
+            b_size -= 5;
+            if (b_size < 200)
+                b_size = 200;
+            i_color -= 1;
+            if (i_color < 0)
+                i_color = 2;
+            refresh_b(i_color);
+        }
+        function refresh_b(i) {
+            b.css("height", b_size);
+            b.css("width", b_size);
+            b.css("backgroundColor", colors[i]);
+        }
+    </script>
+</body>
+</html>

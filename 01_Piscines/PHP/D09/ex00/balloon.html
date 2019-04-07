@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Balloon</title>
+    <style>
+        .balloon {
+            border-radius: 50%;
+        }
+        #b0 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon" id="b0"></div>
+    <p id="msg"></p>
+    <script>
+        let colors = ["red", "green", "blue"];
+        let i_color = 0;
+        let b_size = 200;
+        let b;
+        window.onload = () => {
+            b = document.getElementById("b0");
+            b.addEventListener("click", grow_b);
+            b.addEventListener("mouseleave", shrink_b);
+        };
+        function grow_b() {
+            b_size += 10;
+            if (b_size > 420)
+                b_size = 200;
+            i_color += 1;
+            if (i_color > 2)
+                i_color = 0;
+            refresh_b(i_color);
+        }
+        function shrink_b() {
+            b_size -= 5;
+            if (b_size < 200)
+                b_size = 200;
+            i_color -= 1;
+            if (i_color < 0)
+                i_color = 2;
+            refresh_b(i_color);
+        }
+        function refresh_b(i) {
+            b.style.height = b_size + 'px';
+            b.style.width = b_size + 'px';
+            b.style.backgroundColor = colors[i];
+            document.getElementById("msg").innerHTML = "Diameter is " + b.style.height + "!";
+        }
+    </script>
+</body>
+</html>

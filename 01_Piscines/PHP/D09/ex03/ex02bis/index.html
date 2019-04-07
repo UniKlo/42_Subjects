@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        :root {
+            --p-bg: rgb(15, 47, 77);
+            --item-border: rgb(150, 176, 211);
+        }
+        body {
+            background-color: var(--p-bg);
+        }
+        .todos {
+            width: 500px;
+            position: relative;
+            margin: 200px auto 0 auto;
+            text-align: center;
+            font-family:sans-serif;
+            background-color: rgb(218, 249, 252);
+            border-radius: 10px;
+        }
+        .todos h1 {
+            padding: 10px 0px 0px 0px;
+        }
+        #ft_list div {
+            padding: 15px 0px 15px 0px;
+            border: var(--item-border) 1px solid;
+            position: relative;
+            height: 30px;
+            font-size: 20px;
+            text-align: center;
+        }
+        #ft_list div:hover:after {
+            content: 'Delete';
+            right: 15px;
+            position: absolute;
+            color: var(--item-border)
+        }
+        .todos button {
+            width: 500px;
+            height: 60px;
+            background-color: white;
+            border: 0px solid white;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="todos">
+        <h1>To Do List</h1>
+        <div id="ft_list"></div>
+        <button id="new" name="New">New</button>
+    </div>
+    <script src="todo.js"></script>
+</body>
+</html>

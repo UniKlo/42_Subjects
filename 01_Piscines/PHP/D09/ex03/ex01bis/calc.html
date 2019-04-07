@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calc</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        :root {
+            --p-bg: rgb(71, 59, 59);
+            --cal-bg: rgb(230, 187, 187);
+            --in-l: 45px;
+        }
+        body {
+            background-color: var(--p-bg);
+        }
+       .calc {
+            background-color: var(--cal-bg);
+            width: 300px;
+            margin: auto;
+            position: relative;
+            top: 200px;
+            padding: 50px;
+            border-radius: 10px;
+       }
+       .calc h2 {
+            text-align: center;
+            font-family:Arial, Helvetica, sans-serif;
+       }
+       .calc input {
+            text-align: center;
+            border: 1px grey solid;
+            border-radius: 3px;
+       }
+       .calc select {
+            width: 207px;
+            height: 30px;
+            margin: 10px 0 0 0;
+            position: relative;
+            left: var(--in-l);
+            text-indent: 90px;
+       }
+       .calc input[type=text] {
+            width: 203px;
+            height: 30px;
+            margin: 10px 0 0 0;
+            position: relative;
+            left: var(--in-l);
+       }
+       .calc input[type=submit] {
+            font-size: 20px;
+            width: 207px;
+            height: 35px;
+            margin: 10px 0 0 0;
+            position: relative;
+            left: var(--in-l);
+       }
+    </style>
+</head>
+<body>
+    <div class="calc">
+        <h2>Calculator</h2>
+        <form id="calc">
+            <input type="text" id="val_0">
+            <select id="op">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+                <option>%</option>
+            </select>
+            <input type="text" id="val_1">
+            <input type="submit" value="Try me!">
+        </form>
+    </div>
+    <script>
+        let v0, v1, op, cal;
+        $(document).ready(() => {
+            v0 = $("#val_0");
+            v1 = $("#val_1");
+            op = $("#op");
+            cal = $("#calc");
+            cal.submit(calculate);
+            setInterval("alert('Please, use me...')", 30000);
+        });
+        function calculate(e) {
+            e.preventDefault();
+            if (v0.val() !== "" && v1.val() !== "") {
+                let num0 = Number(v0.val()),
+                    num1 = Number(v1.val()),
+                    operator = op.val();
+                let result = null;
+                if (is_pos(num0) && is_pos(num1)) {
+                    switch(operator) {
+                        case "+":
+                            result = num0 + num1;
+                            break;
+                        case "-":
+                            result = num0 - num1;
+                            break;
+                        case "*":
+                            result = num0 * num1;
+                            break;
+                        case "/":
+                            if (num1 === 0)
+                                result = "It’s over 9000!";
+                            else
+                                result = num0 / num1;
+                            break;
+                        case "%":
+                            if (num1 === 0)
+                                result = "It’s over 9000!";
+                            else
+                                result = num0 % num1;
+                            break;
+                        default:
+                            result = "Error :(";
+                    }
+                } else {
+                    result = "Error :(";
+                }
+                if (result !== null)
+                    output_res(result);
+            } else {
+                output_res("Error :(");
+            }
+        }
+        function is_pos(num) {
+            return Number.isInteger(num) && num >= 0;
+        }
+        function output_res(val) {
+            console.log(val);
+            alert(val);
+        }
+    </script>
+</body>
+</html>
