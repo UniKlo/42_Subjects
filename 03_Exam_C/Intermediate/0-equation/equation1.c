@@ -5,24 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 15:17:18 by khou              #+#    #+#             */
-/*   Updated: 2019/05/02 16:00:33 by khou             ###   ########.fr       */
+/*   Created: 2019/03/04 21:55:09 by khou              #+#    #+#             */
+/*   Updated: 2019/03/04 22:09:56 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*object:
-1. test main
-2. pass nbr form command
-3. 10 * A + B + 10 * C + A = n, 11 * A + 10 * C + B = n
-4. 3 layer while loop
-*/
+
 #include <stdio.h>
+
+int		two_digit(int a, int b)
+{
+	return (a * 10 + b);
+}
 
 void    equation(int n)
 {
-	int a;
-	int b;
-	int c;
+	int a, b, c;
 	a = 0;
+	b = 0;
+	c = 0;
+	if (n == 0)
+	{
+		printf("A = %d, B = %d, C = %d\n", a, b, c);
+		return ;
+	}
 	while (a < 10)
 	{
 		b = 0;
@@ -31,28 +36,29 @@ void    equation(int n)
 			c = 0;
 			while (c < 10)
 			{
-				if (11 * a + 10 * c + b == n)
+				if (two_digit(a, b) + two_digit(c, a) == n)
+				{
 					printf("A = %d, B = %d, C = %d\n", a, b, c);
+				}
 				c++;
 			}
 			b++;
 		}
-		a++;
+	a++;
 	}
-	
 }
 
-
-
 /*
-#include <stdlib.h>
-
-int		main(int argc, char **argv)
+int main()
 {
-	if (argc == 2)
-	{
-		equation(atoi(argv[1]));
-	}
+	int a, b;
+
+	a = 1;
+	b = 111;
 	
+	printf("%d:\n", a);
+	equation(a);
+	printf("\n%d:\n", b);
+	equation(b);
 }
 */
