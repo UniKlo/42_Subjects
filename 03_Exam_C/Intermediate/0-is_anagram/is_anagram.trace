@@ -1,0 +1,67 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e1z2r8p21.42.us.org
+Darwin 17.4.0 x86_64
+$> date
+Sun Jun 16 15:03:09 PDT 2019
+$> gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+$> clang --version
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2019/c-exam-alone-in-the-dark-intermediate/practice-exam_20190616/khou
+
+= Git history ==================================================================
+$> git -C /var/folders/4h/34yst3g12ts6lhwspf0fqhqm0000gp/T/tmpc8SiSW/user log --pretty='%H - %an, %ad : %s'
+d270ba436b4847dd2d0668b98ba0733cae1e99a9 - Khloe Hou, Sun Jun 16 15:02:54 2019 -0700 : 1
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/4h/34yst3g12ts6lhwspf0fqhqm0000gp/T/tmpc8SiSW/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  244 Jun 16 15:03 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought  102 Jun 16 15:03 is_anagram
+
+/var/folders/4h/34yst3g12ts6lhwspf0fqhqm0000gp/T/tmpc8SiSW/user/is_anagram:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1182 Jun 16 15:03 is_anagram.c
+ 
+= is_anagram ===================================================================
+$> gcc -Wextra -Wall -Werror is_anagram.c main.c -o user_exe 
+
+= Test 1 ===================================================
+$> ./8n2bsfhqpisl4tvoeoatrzqy test_correct_a_00.txt test_correct_b_00.txt
+$> diff -U 3 user_output_test1 test1.output | cat -e
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./sitzivi2t0heu053gy5whvev test_correct_a_01.txt test_correct_b_01.txt
+$> diff -U 3 user_output_test2 test2.output | cat -e
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./w4q5syk90r3ioswjipech7sq test_correct_a_02.txt test_correct_b_02.txt
+$> diff -U 3 user_output_test3 test3.output | cat -e
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./2qb1vavk50l7yd0lagxwt19r test_incorrect_a_02.txt test_incorrect_b_02.txt
+$> diff -U 3 user_output_test4 test4.output | cat -e
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./fr79i5mox6p7hluwkgs89581 test_incorrect_a_03.txt test_incorrect_b_03.txt
+$> diff -U 3 user_output_test5 test5.output | cat -e
+
+Diff OK :D
+Grade: 1
+
+= Final grade: 1 ===============================================================
