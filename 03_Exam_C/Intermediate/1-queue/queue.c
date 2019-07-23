@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 09:56:24 by exam              #+#    #+#             */
-/*   Updated: 2019/03/05 11:26:27 by exam             ###   ########.fr       */
+/*   Updated: 2019/07/23 08:51:28 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,41 @@ void *peek(struct s_queue *queue)
 }
 
 
-/*
-int		main()
-{
-	t_node list[3];
-	list[0].content = 1;
-	list[0].next = &list[1];
+#include <stdio.h>
+int main(){
+	struct s_queue *q = init();
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("Peeking: %s\n", peek(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("Peeking: %s\n", peek(q));
 
-	list[1].content = 32;
-	list[1].next = &list[2];
+	printf("Enqueueing one\n"); enqueue(q, "one");
+	printf("Peeking: %s\n", peek(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Enqueueing two\n"); enqueue(q, "two");
+	printf("Peeking: %s\n", peek(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Enqueueing three\n"); enqueue(q, "three");
+	printf("Peeking: %s\n", peek(q));
+	printf("isEmpty: %i\n", isEmpty(q));
 
-    list[2].content = 52;
-    list[2].next = NULL;
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Peeking: %s\n", peek(q));
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Peeking: %s\n", peek(q));
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Peeking: %s\n", peek(q));
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Peeking: %s\n", peek(q));
+	printf("Dequeueing: %s\n", dequeue(q));
+	printf("isEmpty: %i\n", isEmpty(q));
+	printf("Peeking: %s\n", peek(q));
 
-	t_queue *que = init();
-
-	enqueue(que, 13);
 
 }
-*/
