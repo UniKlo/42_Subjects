@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   count_of_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/28 19:01:18 by khou              #+#    #+#             */
-/*   Updated: 2019/07/28 19:04:41 by khou             ###   ########.fr       */
+/*   Created: 2019/03/05 09:02:56 by exam              #+#    #+#             */
+/*   Updated: 2019/03/05 09:54:46 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int count = 0;
+
 int		nbr_of_2(int n)
 {
-	static int count = 0;
 	if (n % 10 == 2)
 		count++;
 	if (n / 10)
@@ -31,8 +32,29 @@ int    count_of_2(int n)
 
 	while (i <= n)
 	{
+		count = 0;
 		total_count += nbr_of_2(i);
+		count = 0;
 		i++;
 	}
 	return (total_count);
 }
+
+/*
+#include <stdio.h>
+
+int		main()
+{
+	int	n = 22;
+	printf("%d\n", count_of_2(n));
+
+
+	int nbr = 42200002;
+	printf("%d has %d\n", nbr, nbr_of_2(nbr));
+	count = 0;
+	int nbr1 = 6662202;
+    printf("%d has %d\n", nbr, nbr_of_2(nbr1));
+
+	return (0);
+}
+*/

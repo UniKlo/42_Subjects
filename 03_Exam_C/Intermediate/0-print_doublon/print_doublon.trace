@@ -1,0 +1,69 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e1z3r7p22.42.us.org
+Darwin 17.4.0 x86_64
+$> date
+Sun Jul 28 19:09:09 PDT 2019
+$> gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+$> clang --version
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2019/c-exam-alone-in-the-dark-intermediate/practice-exam_20190729/khou
+
+= Git history ==================================================================
+$> git -C /var/folders/hf/sjdcnw_j7nn19h1p326h3f4r0000gp/T/tmp5D88Gs/user log --pretty='%H - %an, %ad : %s'
+a4f90e61ccb7344a9dd16a7a8695fc1a712f7d51 - Khloe Hou, Sun Jul 28 19:08:56 2019 -0700 : 1
+4c0a6f19b0e4ef32f48d3b9a634f7b23c8fa79c6 - Khloe Hou, Sun Jul 28 19:02:49 2019 -0700 : 1
+4303c91b700402f2dd6adaefc22e291d12ed7724 - Khloe Hou, Sun Jul 28 18:54:12 2019 -0700 : 1
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/hf/sjdcnw_j7nn19h1p326h3f4r0000gp/T/tmp5D88Gs/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  745 Jul 28 19:09 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought  102 Jul 28 19:09 count_of_2
+drwxr-xr-x  3 deepthought  deepthought  102 Jul 28 19:09 find_pivot
+drwxr-xr-x  3 deepthought  deepthought  102 Jul 28 19:09 print_doublon
+
+/var/folders/hf/sjdcnw_j7nn19h1p326h3f4r0000gp/T/tmp5D88Gs/user/count_of_2:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1219 Jul 28 19:09 count_of_2.c
+
+/var/folders/hf/sjdcnw_j7nn19h1p326h3f4r0000gp/T/tmp5D88Gs/user/find_pivot:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1334 Jul 28 19:09 find_pivot.c
+
+/var/folders/hf/sjdcnw_j7nn19h1p326h3f4r0000gp/T/tmp5D88Gs/user/print_doublon:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1215 Jul 28 19:09 print_doublon.c
+ 
+= print_doublon ================================================================
+$> gcc -Wextra -Wall -Werror print_doublon.c main.c -o user_exe 
+
+= Test 1 ===================================================
+$> ./2c3umom3efqpnjdncsaioon4 test_00_1.txt test_00_2.txt
+$> diff -U 3 user_output_test1 test1.output | cat -e
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./xxj3ycatapur1tmxb56vjiat test_00_1.txt test_01_2.txt
+$> diff -U 3 user_output_test2 test2.output | cat -e
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./esb1gwjbrzhfhjgfvngt1n11 test_02_1.txt test_02_2.txt
+$> diff -U 3 user_output_test3 test3.output | cat -e
+
+Diff OK :D
+Grade: 1
+
+= Final grade: 1 ===============================================================
