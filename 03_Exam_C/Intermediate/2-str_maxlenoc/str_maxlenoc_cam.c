@@ -13,7 +13,7 @@
 //get the shortest string
 //get the pattern of the string
 
-#include <stdio.h>
+#include <unistd.h>
 
 int str_len(char *str)
 {
@@ -25,6 +25,58 @@ int str_len(char *str)
 	}
 	return (l);
 }
+
+int	str_array_cmp(int beg, int end, char *str, char **tab, int nbr)
+{
+  int n = 1;
+  int tmp = beg;
+  int count = 0;
+  
+  while (tab[n] && count < nbr)
+    {
+      int i = 0;
+      beg = tmp;
+      //      printf(" cmp to: %s\n",tab[n]);
+      
+      while (tab[n][i] && count < nbr)
+	{
+	  beg = tmp;
+	  while (tab[n][i] && tab[n][i] == str[beg] && beg <= end)
+	    {
+	      //	      printf("comparing tab[%d][%d]: %c, str[%d]: %c\n",n, i,tab[n][i], beg, str[beg]);
+	      i++;
+	      beg++;
+	    }
+	  //	  printf("tab[%d][%d]: %c, beg: %d, tmp: %d\n",n, i, tab[n][i], beg, tmp);
+	  if (beg == end + 1)
+	    {
+	      //	      printf("match!!!\n");
+	      count++;
+	      break;
+	    }
+	  else
+	    i++;
+	  }
+      n++;
+      }
+  //  printf("count: %d, nbr: %d\n", count, nbr);
+  if (count == nbr)
+    {
+      beg = tmp;
+      //      printf("print out the word:");
+      while (beg <= end)
+	{
+	  write(1, &str[beg], 1);
+	  //	  printf("%c", str[beg]);
+	  beg++;
+	}
+      write(1, "\n", 1);
+      return (1);
+    }
+  return (0);
+}
+
+#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
@@ -47,7 +99,7 @@ int		main(int argc, char **argv)
 //			printf("min_len: %d, %s\n", min_len, min_ID);
 			i++;			
 		}
-		printf("min_len: %d, %s\n", min_len, min_str);
+		//		printf("min_len: %d, %s\n", min_len, min_str);
 		int count = min_len;
 		while (count)
 		{
@@ -58,22 +110,19 @@ int		main(int argc, char **argv)
 				end = beg + count - 1;
 				if (end < min_len)
 				{
-					int n = beg;
-					while (n <= end)
-					{
-						printf("%c", min_str[n]);
-						n++;
-					}
-//					str_array_cmp(beg, end, min_str, );
-					printf("\n");
+				  //				  printf("main: beg: %d, end: %d\n", beg, end);
+				  int found =  str_array_cmp(beg, end, min_str, argv, argc - 1);
+				  //printf("found: %d\n", found);
+				  if (found == 1)
+				    return (0);
 				}
 				beg++;
 			}
-			printf("\n");
 			count--;
 		}
+		write(1, "\n", 1);
 
 	}
 	else
-		printf("\n");
+	  write(1, "\n", 1);
 }
