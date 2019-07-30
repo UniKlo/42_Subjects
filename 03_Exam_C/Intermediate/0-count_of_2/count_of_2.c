@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/28 19:01:18 by khou              #+#    #+#             */
-/*   Updated: 2019/07/28 19:04:41 by khou             ###   ########.fr       */
+/*   Created: 2019/07/29 19:33:26 by khou              #+#    #+#             */
+/*   Updated: 2019/07/29 20:04:31 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+int count = 0;
 
 int		nbr_of_2(int n)
 {
-	static int count = 0;
 	if (n % 10 == 2)
 		count++;
 	if (n / 10)
@@ -31,8 +31,24 @@ int    count_of_2(int n)
 
 	while (i <= n)
 	{
+		count = 0;
 		total_count += nbr_of_2(i);
+		count = 0;
 		i++;
 	}
 	return (total_count);
+};
+
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+int		main(int argc, char **argv)
+{
+	if (argc > 1)
+	{
+		printf("nbr of 2: %d", count_of_2(atoi(argv[1])));
+	}
+	printf("\n");
 }
+*/
