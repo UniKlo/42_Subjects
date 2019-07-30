@@ -5,13 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/21 21:04:15 by khou              #+#    #+#             */
-/*   Updated: 2019/07/22 00:13:46 by khou             ###   ########.fr       */
+/*   Created: 2019/07/29 21:14:13 by khou              #+#    #+#             */
+/*   Updated: 2019/07/29 21:16:25 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//get the shortest string
-//get the pattern of the string
 
 #include <unistd.h>
 
@@ -33,54 +30,44 @@ int	str_array_cmp(int beg, int end, char *str, char **tab, int nbr)
   int count = 0;
   
   while (tab[n] && count < nbr)
-    {
-      int i = 0;
+  {
+	  int i = 0;
       beg = tmp;
-      //      printf(" cmp to: %s\n",tab[n]);
-      
       while (tab[n][i] && count < nbr)
-	{
-	  beg = tmp;
-	  while (tab[n][i] && tab[n][i] == str[beg] && beg <= end)
-	    {
-	      //	      printf("comparing tab[%d][%d]: %c, str[%d]: %c\n",n, i,tab[n][i], beg, str[beg]);
-	      i++;
-	      beg++;
-	    }
-	  //	  printf("tab[%d][%d]: %c, beg: %d, tmp: %d\n",n, i, tab[n][i], beg, tmp);
-	  if (beg == end + 1)
-	    {
-	      //	      printf("match!!!\n");
-	      count++;
-	      break;
-	    }
-	  else
-	    i++;
+	  {
+		  beg = tmp;
+		  while (tab[n][i] && tab[n][i] == str[beg] && beg <= end)
+		  {
+			  i++;
+			  beg++;
+		  }
+		  if (beg == end + 1)
+		  {
+			  count++;
+			  break;
+		  }
+		  else
+			  i++;
 	  }
       n++;
-      }
-  //  printf("count: %d, nbr: %d\n", count, nbr);
-  if (count == nbr)
-    {
-      beg = tmp;
-      //      printf("print out the word:");
-      while (beg <= end)
-	{
-	  write(1, &str[beg], 1);
-	  //	  printf("%c", str[beg]);
-	  beg++;
 	}
+  if (count == nbr)
+  {
+      beg = tmp;
+      while (beg <= end)
+	  {
+		  write(1, &str[beg], 1);
+		  beg++;
+	  }
       write(1, "\n", 1);
       return (1);
-    }
+  }
   return (0);
 }
 
-#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
-	
 	if (argc > 1)
 	{
 		int i = 1;
@@ -90,16 +77,13 @@ int		main(int argc, char **argv)
 		while (i < argc)
 		{
 			len = str_len(argv[i]);
-//			printf("len of str: %d %s\n", len, argv[i]);
 			if (min_len > len)
 			{
 				min_len = len;
 				min_str = argv[i];
 			}
-//			printf("min_len: %d, %s\n", min_len, min_ID);
 			i++;			
 		}
-		//		printf("min_len: %d, %s\n", min_len, min_str);
 		int count = min_len;
 		while (count)
 		{
@@ -110,9 +94,7 @@ int		main(int argc, char **argv)
 				end = beg + count - 1;
 				if (end < min_len)
 				{
-				  //				  printf("main: beg: %d, end: %d\n", beg, end);
 				  int found =  str_array_cmp(beg, end, min_str, argv, argc - 1);
-				  //printf("found: %d\n", found);
 				  if (found == 1)
 				    return (0);
 				}
@@ -121,7 +103,6 @@ int		main(int argc, char **argv)
 			count--;
 		}
 		write(1, "\n", 1);
-
 	}
 	else
 	  write(1, "\n", 1);
