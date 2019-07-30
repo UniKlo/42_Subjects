@@ -17,40 +17,57 @@ struct s_node {
 };
 
 #include <stdio.h>
+void tree_left(struct s_node *root)
+{
+  if (!root)
+    return ;
+  printf("%d ", root->value);
+  tree_left(root->left);
+}
 
+void tree_right(struct s_node *root)
+{
+  if (!root)
+    return ;
+  if (root->right)
+    {
+      tree_right(root->right);
+      printf("%d ", root->value);
+    }
+}
+
+void tree_leaf(struct s_node *root)
+{
+  if (!root)
+    return ;
+  tree_leaf(root->left);
+  tree_leaf(root->right);
+  if (!root->left && !root->right)
+    {
+      printf("%d ", root->value);
+    }
+}
 
 void perimeter(struct s_node *root)
 {
-	static int i = 0;
-	static int mark = 0;
-	if (!root)
-		return ;
-	if (i == 1)
-		printf(" ");
-	i = 1;
-	printf("%d", root->value);
-	if (root->left)
-	{
-		mark = 1;
-		perimeter(root->left);
-	}
-	perimeter(root->right);
-	if (!root->left && !root->right)
-	{
-		perimeter(root->left);
-		perimeter(root->right);
-	}
+  if (!root)
+    return ;
+  tree_left(root);
+  printf("\n");
+  tree_leaf(root);
+  printf("\n");
+  tree_right(root);
 
 }
 
 
 void print_tree(struct s_node *root)
 {
-	if (!root)
-		return ;
-	printf("%d\n", root->value);
-	print_tree(root->left);
-	print_tree(root->right);
+  if (!root)
+    return ;
+  printf("%d\n", root->value);
+  print_tree(root->left);
+  print_tree(root->right);
 }
 
 int main()
