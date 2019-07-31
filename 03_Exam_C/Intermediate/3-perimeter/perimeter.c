@@ -18,16 +18,50 @@ struct s_node {
 	struct s_node *left;
 };
 
+<<<<<<< HEAD
 void print_left(struct s_node *root)
 {
 	if (!root)
 		return ;
 	printf("%d ", root->value);
 	print_left(root->left);
+=======
+#include <stdio.h>
+void tree_left(struct s_node *root)
+{
+  if (!root)
+    return ;
+  printf("%d ", root->value);
+  tree_left(root->left);
+}
+
+void tree_right(struct s_node *root)
+{
+  if (!root)
+    return ;
+  if (root->right)
+    {
+      tree_right(root->right);
+      printf("%d ", root->value);
+    }
+}
+
+void tree_leaf(struct s_node *root)
+{
+  if (!root)
+    return ;
+  tree_leaf(root->left);
+  tree_leaf(root->right);
+  if (!root->left && !root->right)
+    {
+      printf("%d ", root->value);
+    }
+>>>>>>> 3dd665f7a22609e99d22af811b3042fc21b34b1a
 }
 
 void print_lleaf(struct s_node *root, int swich)
 {
+<<<<<<< HEAD
 	if (!root)
 		return ;
 	if(swich == 1 && !root->left && !root->right)
@@ -37,6 +71,15 @@ void print_lleaf(struct s_node *root, int swich)
 		swich = 1;
 	print_lleaf(root->right, swich);
 }
+=======
+  if (!root)
+    return ;
+  tree_left(root);
+  printf("\n");
+  tree_leaf(root);
+  printf("\n");
+  tree_right(root);
+>>>>>>> 3dd665f7a22609e99d22af811b3042fc21b34b1a
 
 void print_rleaf(struct s_node *root, int swich)
 {
@@ -60,6 +103,7 @@ void print_right(struct s_node *root)
 
 void perimeter(struct s_node *root)
 {
+<<<<<<< HEAD
 	if (!root)
 		return ;
 	print_left(root);
@@ -68,6 +112,13 @@ void perimeter(struct s_node *root)
 	print_right(root);
 	printf("\n");
 
+=======
+  if (!root)
+    return ;
+  printf("%d\n", root->value);
+  print_tree(root->left);
+  print_tree(root->right);
+>>>>>>> 3dd665f7a22609e99d22af811b3042fc21b34b1a
 }
 
 
