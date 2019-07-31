@@ -3,70 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   count_alpha.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 22:11:43 by khou              #+#    #+#             */
-/*   Updated: 2019/03/04 23:23:23 by khou             ###   ########.fr       */
+/*   Created: 2019/07/30 10:15:33 by exam              #+#    #+#             */
+/*   Updated: 2019/07/30 10:52:13 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int		is_alpha(char c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
-}
-
-
-char	pos_alpha(char c)
-{
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
-}
-
-
 int		main(int argc, char **argv)
 {
-	char str[126];
-	char alpha[26];
-	int i = 0;
-	int mark = 0 ;
-	char c;
-
 	if (argc == 2)
 	{
+		int count[126];
+		int i = 0;
 		while (i < 126)
-			str[i++] = 0;
+			count[i++] = 0;
+		i = 32;
+		char order[126];
 		i = 0;
-		while (i < 36)
-            alpha[i++] = 0;
-		i = 0;
+		while (i < 126)
+			order[i++] = '\0';
 		while (*argv[1])
 		{
-			if (is_alpha(*argv[1]))
+			char c = *argv[1];
+			if (c >= 65 && c <= 90)
+				c = c + 32;
+			if (c >= 97 && c <= 122)
+				count[(int)c]++;
+			i = 0;
+			while (order[i])
 			{
-				c = pos_alpha(*argv[1]);
-				if (str[(int)c] == 0)
-					alpha[i++] = c;
-				str[(int)c] += 1;
+				if (order[i] == c)
+					break;
+				i++;
 			}
+			if (!order[i] && (c >= 97&& c <=122))
+				order[i] = c;
 			argv[1]++;
 		}
 		i = 0;
-		while (i < 26)
+		int mark = 0;
+		while (order[i])
 		{
-			while (!alpha[i] && i < 26)
-                i++;
-            if (i < 26 && mark)
-                printf(", ");
-			if (alpha[i])
+			if (mark == 1)
 			{
-				printf("%d%c",  str[(int)alpha[i]], alpha[i]);
-				mark = 1;
+				printf(", ");
+				mark = 0;
 			}
+			printf("%d%c", count[(int)order[i]], order[i]);
+			mark = 1;
 			i++;
 		}
 	}
