@@ -29,7 +29,9 @@ void reverse_tree(struct s_node *root)
 	reverse_tree(root->right);
 }
 /*
+#include <stdlib.h>
 #include <stdio.h>
+
 void	print_tree(struct s_node *root)
 {
 	if (!root)
@@ -39,57 +41,35 @@ void	print_tree(struct s_node *root)
 	print_tree(root->right);
 }
 
-int main()
+struct s_node *new_node(int nbr)
 {
-	struct s_node root;
-	struct s_node l;
-	struct s_node r;
-	struct s_node ll;
-	struct s_node lr;
-	struct s_node lll;
-	struct s_node lrl;
-	struct s_node lrr;
-	struct s_node lrlr;
+	struct s_node *new;
+	new = malloc(sizeof(struct s_node));
 
-	root.value = 94;
-	root.left = &l;
-	root.right = &r;
+	new->value = nbr;
+	new->right = NULL;
+	new->left = NULL;
+	return (new);
+}
 
-	l.value = 34;
-	l.left = &ll;
-	l.right = &lr;
+int		main()
+{
+	struct s_node *root;
 
-    r.value= 52;
-    r.left = NULL;
-    r.right= NULL;
+	root = new_node(94);
+	root->left = new_node(34);
+	root->right = new_node(52);
 
-    ll.value= 1;
-    ll.left = &lll;
-    ll.right= NULL;
+	root->left->left = new_node(1);
+	root->left->right = new_node(99);
 
-    lr.value= 99;
-    lr.left = &lrl;
-    lr.right= &lrr;
+	root->left->left->left = new_node(20);
+	root->left->right->left = new_node(83);
+	root->left->right->right = new_node(39);
 
-    lll.value= 20;
-    lll.left = NULL;
-    lll.right= NULL;
-
-    lrl.value= 83;
-    lrl.left = NULL;
-    lrl.right= &lrlr;
-
-    lrr.value= 39;
-    lrr.left = NULL;
-    lrr.right= NULL;
-
-    lrlr.value= 61;
-    lrlr.left = NULL;
-    lrlr.right= NULL;
-
-	print_tree(&root);
-	printf("After reverse\n");
-	reverse_tree(&root);
-	print_tree(&root);
+	print_tree(root);
+	printf("after\n");
+	reverse_tree(root);
+	print_tree(root);
 }
 */

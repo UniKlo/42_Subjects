@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 10:32:21 by exam              #+#    #+#             */
-/*   Updated: 2019/07/23 11:01:52 by exam             ###   ########.fr       */
+/*   Created: 2019/07/30 11:09:18 by exam              #+#    #+#             */
+/*   Updated: 2019/07/30 11:47:29 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 struct s_node {
 	int           value;
@@ -16,93 +18,120 @@ struct s_node {
 	struct s_node *left;
 };
 
-#include <stdio.h>
+void print_left(struct s_node *root)
+{
+	if (!root)
+		return ;
+	printf("%d ", root->value);
+	print_left(root->left);
+}
 
+void print_lleaf(struct s_node *root, int swich)
+{
+	if (!root)
+		return ;
+	if(swich == 1 && !root->left && !root->right)
+		printf("%d ", root->value);
+	print_lleaf(root->left, swich);
+	if(root->right)
+		swich = 1;
+	print_lleaf(root->right, swich);
+}
+
+void print_rleaf(struct s_node *root, int swich)
+{
+    if (!root)
+        return ;
+    if(swich == 1 && !root->left && !root->right)
+		printf("%d ", root->value);
+    print_rleaf(root->left, swich);
+    print_rleaf(root->right, swich);
+    if(root->left)
+        swich = 1;
+}
+
+void print_right(struct s_node *root)
+{
+    if (!root || !root->right)
+        return ;
+    print_right(root->right);
+    printf("%d ", root->right->value);
+}
 
 void perimeter(struct s_node *root)
 {
-	static int i = 0;
-	static int mark = 0;
 	if (!root)
 		return ;
-	if (i == 1)
-		printf(" ");
-	i = 1;
-	printf("%d", root->value);
-	if (root->left)
-	{
-		mark = 1;
-		perimeter(root->left);
-	}
-	perimeter(root->right);
-	if (!root->left && !root->right)
-	{
-		perimeter(root->left);
-		perimeter(root->right);
-	}
+	print_left(root);
+	print_lleaf(root->left, 0);
+	print_rleaf(root->right, 0);
+	print_right(root);
+	printf("\n");
 
 }
 
 
-void print_tree(struct s_node *root)
+#include <stdlib.h>
+#include <stdio.h>
+
+void    print_tree(struct s_node *root)
 {
-	if (!root)
-		return ;
-	printf("%d\n", root->value);
-	print_tree(root->left);
-	print_tree(root->right);
+    if (!root)
+        return ;
+    printf("%d\n", root->value);
+    print_tree(root->left);
+    print_tree(root->right);
 }
 
-int main()
+struct s_node *new_node(int nbr)
 {
-	struct s_node root;
-	struct s_node l;
-	struct s_node r;
-	struct s_node ll;
-	struct s_node rr;
-	struct s_node rl;
-	struct s_node llr;
-	struct s_node rrl;
-	struct s_node rrr;
+    struct s_node *new;
+    new = malloc(sizeof(struct s_node));
 
-	root.value = 92;
-	root.left = &l;
-	root.right = &r;
-
-	l.value = 85;
-	l.left = &ll;
-	l.right = NULL;
-
-    r.value= 26;
-    r.left = &rl;
-    r.right= &rr;
+    new->value = nbr;
+    new->right = NULL;
+    new->left = NULL;
+    return (new);
+}
 
 
-    rl.value= 0;
-    rl.left = NULL;
-    rl.right= NULL;
+int     main()
+{
+    struct s_node *root;
 
-    ll.value= 79;
-    ll.left = NULL;
-    ll.right= &llr;
+    root = new_node(92);
+    root->left = new_node(85);
+    root->left->left = new_node(79);
 
-    rr.value= 64;
-    rr.left = &rrl;
-    rr.right= &rrr;
+    root->left->left->right = new_node(10);
+	root->left->left->right->left = new_node(96);
 
-    llr.value= 10;
-    llr.left = NULL;
-    llr.right= NULL;
+	root->right = new_node(26);
+    root->right->right = new_node(64);
+    root->right->right->left = new_node(40);
+    root->right->right->right = new_node(78);
 
-    rrl.value= 40;
-    rrl.left = NULL;
-    rrl.right= NULL;
+	root->right->right->left->left = new_node(88);
+	root->right->right->left->right = new_node(10);
+	root->right->right->left->left->left = new_node(12);
+	root->right->right->left->left->right = new_node(55);
 
-    rrr.value= 78;
-    rrr.left = NULL;
-    rrr.right= NULL;
+	root->right->right->left->left->left->left = new_node(58);
+	root->right->right->left->left->right->left = new_node(58);
+	root->right->right->left->left->right->right = new_node(41);
 
-	print_tree(&root);
-	printf("print perimeter\n");
-	perimeter(&root);
+	root->right->right->left->right->left = new_node(52);
+	root->right->right->left->right->right = new_node(87);
+	root->right->right->left->right->left->left = new_node(22);
+	root->right->right->left->right->left->right = new_node(35);
+	root->right->right->left->right->right->right = new_node(31);
+	root->right->right->right->left = new_node(2);
+	root->right->right->right->left->left = new_node(55);
+	root->right->right->right->left->right = new_node(99);
+	root->right->right->right->right = new_node(85);
+	root->right->right->right->right->right = new_node(51);
+    print_tree(root);
+
+    printf("after\n");
+    perimeter(root);
 }
