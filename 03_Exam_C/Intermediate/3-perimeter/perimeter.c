@@ -30,24 +30,26 @@ void print_lleaf(struct s_node *root, int swich)
 {
 	if (!root)
 		return ;
+	int tmp = 0;
 	if(swich == 1 && !root->left && !root->right)
-		printf("%d ", root->value);
+	  printf("%d ", root->value);
 	print_lleaf(root->left, swich);
 	if(root->right)
-		swich = 1;
-	print_lleaf(root->right, swich);
+	  tmp = 1;
+	print_lleaf(root->right, tmp);
 }
 
 void print_rleaf(struct s_node *root, int swich)
 {
     if (!root)
         return ;
+    int tmp = 0;
     if(swich == 1 && !root->left && !root->right)
-		printf("%d ", root->value);
-    print_rleaf(root->left, swich);
-    print_rleaf(root->right, swich);
+      printf("%d ", root->value);
     if(root->left)
-        swich = 1;
+        tmp  = 1;
+    print_rleaf(root->left, tmp);
+    print_rleaf(root->right, tmp);
 }
 
 void print_right(struct s_node *root)
@@ -102,6 +104,7 @@ int     main()
     root = new_node(92);
     root->left = new_node(85);
     root->left->left = new_node(79);
+    root->left->left->left = new_node(1000);
 
     root->left->left->right = new_node(10);
 	root->left->left->right->left = new_node(96);
