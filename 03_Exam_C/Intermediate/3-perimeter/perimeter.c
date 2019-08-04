@@ -74,7 +74,6 @@ void perimeter(struct s_node *root)
 
 }
 
-
 #include <stdlib.h>
 #include <stdio.h>
 
