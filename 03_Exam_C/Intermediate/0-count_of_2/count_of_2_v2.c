@@ -1,49 +1,38 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_pivot.c                                       :+:      :+:    :+:   */
+/*   count_of_2_v2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 20:57:08 by khou              #+#    #+#             */
-/*   Updated: 2019/03/04 21:53:43 by khou             ###   ########.fr       */
+/*   Created: 2019/08/04 00:03:51 by khou              #+#    #+#             */
+/*   Updated: 2019/08/04 00:05:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	find_pivot(int *arr, int n)
-{
-	int i;
-	int j = 0;
-	int f_sum;
-	int b_sum = 0;
-	
-	while (j < n && j != i)
+int count_of_2(int n) {
+	int count = 0;
+	int i = 0;
+	while (i <= n)
 	{
-		b_sum += arr[n-j-1];
-		i = 0;
-		f_sum = 0;
-		while (i < n && f_sum < b_sum)
+		int tmp = i;
+		while (tmp > 0)
 		{
-			f_sum += arr[i];
-			if (f_sum != 0 && f_sum == b_sum)
-			{
-				return (i + 1);
-			}
-			i++;
+			if (tmp % 10 == 2)
+				count++;
+			tmp /= 10;
 		}
-		j++;
+		i++;
 	}
-	return (-1);
+	return (count);
 }
 
-/*
+
+//test 
 #include <stdio.h>
+#include <stdlib.h>
 
-int		main()
-{
-	int	arr[] = {7,8,9};
-	int i = 3;
-	
-	printf("ret: %d\n", find_pivot(arr, i));
+int main(int ac, char **av){
+	printf("%i\n", count_of_2(atoi(av[1])));	
 }
-*/
