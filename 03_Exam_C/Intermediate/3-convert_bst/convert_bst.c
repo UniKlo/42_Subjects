@@ -3,110 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   convert_bst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/30 12:07:23 by exam              #+#    #+#             */
-/*   Updated: 2019/07/30 12:14:03 by exam             ###   ########.fr       */
+/*   Created: 2019/08/05 01:00:41 by khou              #+#    #+#             */
+/*   Updated: 2019/08/05 01:01:01 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-struct s_node
-{
+typedef struct s_node {
     int value;
-    struct s_node *left;
     struct s_node *right;
-};
+    struct s_node *left;
+}               t_node;
 
-#include <stdio.h>
+t_node *first = 0;
+t_node *last = 0;
 
-void	flat(struct s_node *root)
+void in_order(t_node *node)
 {
-  if (!root)
-    return ;
-  struct s_node *ltmp;
-  struct s_node *rtmp;
-  ltmp = root->left;
-  printf("I m here: %d\n", root->value);
-  if (root->left && root->left->right)
+    if (!node) return ;
+    in_order(node->left);
+    if (!first)
     {
-      printf("root->left: %d, root->left->right: %d\n", root->left->value, root->left->right->value);
-      root->left = root->left->right;
-root->left->right->left = 
+        first = last = node;
     }
-  rtmp = root->right;
-  if (root->right && root->right->left)
-    root->right = root->right->left;
-  flat(ltmp);
-  flat(rtmp);
+    else
+    {
+        node->left = last;
+        last->right = node;
+        last = node;
+    }
+    in_order(node->right);
 }
-/*
+
 struct s_node *convert_bst(struct s_node *root)
 {
-    if (!root)
-      return (0);
-    struct s_node *ltmp;
-    struct s_node *rtmp;
-    ltmp = root->left;
-    if (root->left)
-      root->left = root->left->right;
-    rtmp = root->right;
-    if (root->right)
-      root->right = root->right->left;
-    convert_bst(ltmp);
-    convert_bst(rtmp);
+    in_order(root);
+    first->left = last;
+    last->right = first;
+    return (first);
+}
 
-    }*/
-
-#include <stdlib.h>
+/*
 #include <stdio.h>
+#include <stdlib.h>
 
-void    print_tree(struct s_node *root)
-{
-    if (!root)
-		return ;
-    print_tree(root->left); 
-    printf("%d\n", root->value);
-    print_tree(root->right);
+t_node *new_node(int value) {
+    t_node *ret = malloc(sizeof(t_node));
+    ret->value = value;
+    ret->left = ret->right = 0;
+    return (ret);
 }
 
-void    print_link(struct s_node *root)
-{
-  if (!root)
-    return ;
-  print_tree(root->left);
-  printf("%d\n", root->value);
-  //  print_tree(root->right);
-}
-
-struct s_node *new_node(int nbr)
-{
-    struct s_node *new;
-    new = malloc(sizeof(struct s_node));
-
-    new->value = nbr;
-    new->right = NULL;
-    new->left = NULL;
-    return (new);
-}
-
-
-int     main()
-{
-    struct s_node *root;
-
-    root = new_node(28);
+int main(){
+    t_node *root = new_node(28);
     root->left = new_node(26);
-	root->right = new_node(29);
-    root->left->left = new_node(24);
+    root->left->left = new_node(25);
     root->left->right = new_node(27);
+    root->right = new_node(30);
+    root->right->left = new_node(29);
+    root->right->right = new_node(31);
 
-    root->left->left->left = new_node(23);
-    root->left->left->right = new_node(25);
-
-    print_tree(root);
-
-    //    convert_bst(root);
-    printf("after\n");
-    flat(root);
-    print_link(root);
+     in_order(root);
+    first->left = last; last->right = first;
+    for(int i = 0; i < 50; ++i)
+    {
+        printf("%i ", first->value);
+        first = first->left;
+    }
+    printf("\n");
 }
+*/
