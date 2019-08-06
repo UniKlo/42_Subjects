@@ -30,46 +30,47 @@ t_node *new_node(int nbr)
 
 struct s_node *clone_list(struct s_node *node)
 {
-	t_node *beg;
-	beg = node;
-	t_node *start = 0 ;
-	t_node *last = 0;
-	while (node)
+  t_node *beg;
+  beg = node;
+  t_node *start = 0 ;
+  t_node *last = 0;
+  while (node)
+    {
+      if (!start)
 	{
-		if (!start)
-		{
-			start = last = new_node(node->data);
-		}
-		else
-		{
-			last->next = new_node(node->data);
-			last = last->next;
-		}
-		node = node->next;
+	  start = last = new_node(node->data);
 	}
-/*
-	node = beg;
-	t_node *tmp;
-	tmp = beg;
-	while (node)
+      else
 	{
-		beg = tmp;
-		int i = 0;
-		while (beg)
-		{
-			if (node->other == beg)
-				break;
-				i++;
-			beg = beg->next;
-		}
-		int j = 0;
-		while (j < i)
-		{
-			
-		node = node->next;
+	  last->next = new_node(node->data);
+		  last = last->next;
 	}
-	return (start);
-*/
+      node = node->next;
+    }
+  
+  node = beg;
+  t_node *tmp =  beg;
+  t_node *tmp_new = start;
+
+  last = start;
+  while (node)
+    {
+      tmp = beg;
+      tmp_new = start;
+      if (node->other)
+	{
+	  while (tmp)
+	    {
+	      if (node->other == tmp)
+		last->other = tmp_new;
+	      tmp = tmp->next;
+	      tmp_new = tmp_new->next;
+	    }
+	}
+      node = node->next;
+      last = last->next;
+    }
+  return (start);
 }
 
 
@@ -101,14 +102,17 @@ int main()
 	org->next->next->next->next->next = new_node(6);
 	org->other = org->next->next; // 1 -> 3
 	org->next->next->other = org->next; // 3 -> 2
-	org->next->next->next->next->other = org->next->next; // 5 -> 3
+	org->next->other = org->next->next->next->next->next;
+	org->next->next->next->next->next->other = org->next->next->next->next;
+	org->next->next->next->next->other = org->next->next->next; // 5 -> 4
 	
 	print_list(org);
 	printf("print_other\n");
 	print_other(org);
-    printf("after\n");
+	printf("after\n");
 
 	t_node *new = clone_list(org);
-
 	print_list(new);
+	printf("print_other\n");
+        print_other(new);
 }
