@@ -13,12 +13,12 @@ void *intersection(struct s_node *lst1, struct s_node *lst2)
       while (lst2)
 	{
 	  if (lst1 == lst2)
-	    return (lst2->content);
+	    return (lst2);
 	  lst2 = lst2->next;
 	}
       lst1 = lst1->next;
     }
-  return ("\0");
+  return (0);
 }
 
 
@@ -54,8 +54,8 @@ int	main()
 
   lst2 = new_node("one");
   lst2->next = new_node("two");
-  //  lst2->next->next = lst1->next->next;
-  lst2->next->next = new_node("three");
+   lst2->next->next = lst1->next->next;
+   //  lst2->next->next = new_node("three");
   print_node(lst1);
   print_node(lst2);
   printf("T/F: %s\n", intersection(lst1, lst2));
