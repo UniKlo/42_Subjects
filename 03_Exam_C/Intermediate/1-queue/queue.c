@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/05 09:56:24 by exam              #+#    #+#             */
-/*   Updated: 2019/07/23 08:51:28 by khou             ###   ########.fr       */
+/*   Created: 2019/08/05 23:20:31 by khou              #+#    #+#             */
+/*   Updated: 2019/08/05 23:39:59 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ struct s_queue {
 
 int isEmpty(struct s_queue *queue)
 {
-	if (!queue || !queue->first || !queue->last )
+	if (!queue || (!queue->first || !queue->last) )
 		return (1);
 	return (0);
 }
@@ -49,14 +49,15 @@ void enqueue(struct s_queue *queue, void *content)
 	new_node->next = NULL;
 	if (isEmpty(queue))
 	{
-		queue = init();
+		if (!queue)
+			queue = init();
 		queue->first = new_node;
 		queue->last = new_node;
 	}
 	else
 	{
-	queue->last->next = new_node;
-	queue->last = new_node;
+		queue->last->next = new_node;
+		queue->last = new_node;
 	}
 }
 
@@ -78,13 +79,10 @@ void *peek(struct s_queue *queue)
 	return (queue->first->content);
 }
 
-
+/*
 #include <stdio.h>
 int main(){
 	struct s_queue *q = init();
-	printf("isEmpty: %i\n", isEmpty(q));
-	printf("Dequeueing: %s\n", dequeue(q));
-	printf("Peeking: %s\n", peek(q));
 	printf("isEmpty: %i\n", isEmpty(q));
 	printf("Dequeueing: %s\n", dequeue(q));
 	printf("Peeking: %s\n", peek(q));
@@ -108,12 +106,7 @@ int main(){
 	printf("Dequeueing: %s\n", dequeue(q));
 	printf("isEmpty: %i\n", isEmpty(q));
 	printf("Peeking: %s\n", peek(q));
-	printf("Dequeueing: %s\n", dequeue(q));
-	printf("isEmpty: %i\n", isEmpty(q));
-	printf("Peeking: %s\n", peek(q));
-	printf("Dequeueing: %s\n", dequeue(q));
-	printf("isEmpty: %i\n", isEmpty(q));
-	printf("Peeking: %s\n", peek(q));
-
 
 }
+
+*/
