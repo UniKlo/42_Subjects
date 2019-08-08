@@ -1,65 +1,125 @@
-#include <stdio.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ord_alphlong.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/07 22:24:22 by khou              #+#    #+#             */
+/*   Updated: 2019/08/08 00:56:24 by khou             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "ord.h"
 
-int str_len(char *str)
+t_node *new_node(char *str)
 {
-  int l = 0;
-  while (*str)
-    {
-      l++;
-      str++;
-    }
-  return (l);
+	t_node  *node = malloc(sizeof(t_node));
+	node->str = str;
+	node->left = NULL;
+	node->right = NULL;
+	return (node);
 }
 
-int             main(int argc, char **argv)
+int	cmp_len(char *s1, char *s2)
 {
-
-  if (argc > 1)
-    {
-      int i = 1;
-      int     len = 0;
-      int min_len = str_len(argv[i]);
-      char *min_str = argv[1];
-      while (i < argc)
+	int i = 0;
+	int j = 0;
+	while (s1[i] && s2[j])
 	{
-	  len = str_len(argv[i]);
-	  //                      printf("len of str: %d %s\n", len, argv[i]);
-	  if (min_len > len)
-	    {
-	      min_len = len;
-	      min_str = argv[i];
-	    }
-	  //                      printf("min_len: %d, %s\n", min_len, min_ID);
-	  i++;
+		i++;
+		j++;
 	}
-      printf("min_len: %d, %s\n", min_len, min_str);
-      /*
-      int count = min_len;
-      while (count)
+	if (!s1[i] && !s2[j])
+		return (-1);
+	if (!s1[i])
+		return (0);
+	return (1);
+}
+
+int cmp_alp(char *s1, char *s2)
+{
+    int	i = 0;
+    int	j = 0;
+    while (s1[i] && s2[j])
+    {
+		if (s1[i] > s2[j])
+			return (1);
+        i++;
+        j++;
+    }
+	return (1);
+}
+
+int	cmp(char *str1, char *str2)
+{
+//	printf("cmp %s to %s\n", str1, str2);
+//	printf("cmp_len %d, ", cmp_len(str1, str2));
+//	printf("cmp_alp %d\n", cmp_alp(str1, str2));
+	if (cmp_len(str1, str2)) // is short
+		return (1);
+	else
+		return (0);
+	if (cmp_alp(str1, str2))
+			return (1);
+	return (0);
+}
+
+void insert(t_node *tree, char *str)
+{
+	t_node *new;
+	printf("%s, %s, final: %d\n", tree->str, str,cmp(tree->str, str));	
+	if (cmp(tree->str, str))// short, and early
 	{
-	  int beg = 0;
-	  int end = min_len - 1;
-	  while (beg < min_len)
-	    {
-	      end = beg + count - 1;
-	      if (end < min_len)
+		if (!tree->left)
 		{
-		  printf("main: beg: \
-		  %d, end: %d\n", beg, end);
-                                  int found =  str_array_cmp(beg, end, min_str, argv,\
- argc - 1);
-                                  //printf("found: %d\n", found);
-                                  if (found == 1)
-                                    return (0);
-                                }
-                                beg++;
-                        }
-                        count--;
-                }
-                write(1, "\n", 1);
-      */
+			new = new_node(str);
+			tree->left = new;
+		}
+		else
+			insert(tree->left, str);
+	}
+	else
+	{
+		printf("I m in right\n");
+		if (!tree->right)
+		{
+            new	= new_node(str);
+            tree->right = new;
         }
-        else
-	write(1, "\n", 1);
+		else
+			insert(tree->right, str);
+	}
+}
+
+void	print_tree(t_node *root)
+{
+	if (!root)
+		return ;
+	print_tree(root->left);
+	printf("%s\n", root->str);
+	print_tree(root->right);
+}
+
+int	main(int argc, char **argv)
+{
+	char **tab;
+	t_node *root;
+	if (argc == 2)
+	{
+		tab = str_split(argv[1]);
+		printf("I m in main!\n");
+		int i = 0;
+//		if (tab[i])??
+		root = new_node(tab[i]);
+		i++;
+		while (tab[i])
+		{
+			printf("%s\n", tab[i]);
+			insert(root, tab[i]);
+			i++;
+		}
+		printf("Here is the tree\n");
+		print_tree(root);
+	}
+	printf("\n");
 }
