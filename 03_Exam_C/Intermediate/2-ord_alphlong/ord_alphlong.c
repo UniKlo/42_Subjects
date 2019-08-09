@@ -36,39 +36,56 @@ int	cmp_len(char *s1, char *s2)
 	return (1);
 }
 
+int cmp_ascii(char a, char b)
+{
+  if (a < 97)
+    a = a + 32;
+  if (b < 97)
+    b = b + 32;
+  if (a > b)
+    return (1);
+  else 
+    return (0);
+}
+
 int cmp_alp(char *s1, char *s2)
 {
     int	i = 0;
     int	j = 0;
     while (s1[i] && s2[j])
     {
-		if (s1[i] > s2[j])
-			return (1);
-        i++;
-        j++;
-    }
+      if (cmp_ascii(s1[i],s2[j]))
 	return (1);
+      else
+	return (0);
+      i++;
+      j++;
+    }
+    if (!s1[i] && !s2[j])
+      return (-1);
+    if (!s1[i])
+      return (0);
+    return (1);
 }
 
 int	cmp(char *str1, char *str2)
 {
-//	printf("cmp %s to %s\n", str1, str2);
-//	printf("cmp_len %d, ", cmp_len(str1, str2));
-//	printf("cmp_alp %d\n", cmp_alp(str1, str2));
-	if (cmp_len(str1, str2)) // is short
+  int	is_short = cmp_len(str1, str2);
+  int	go_before = cmp_alp(str1, str2);
+
+	if (is_short == 1) // is short
 		return (1);
-	else
+	else if (!is_short)
 		return (0);
-	if (cmp_alp(str1, str2))
-			return (1);
+	if (go_before)
+	  return (1);
 	return (0);
 }
 
 void insert(t_node *tree, char *str)
 {
 	t_node *new;
-	printf("%s, %s, final: %d\n", tree->str, str,cmp(tree->str, str));	
-	if (cmp(tree->str, str))// short, and early
+	if (cmp(tree->str, str))
 	{
 		if (!tree->left)
 		{
@@ -80,7 +97,6 @@ void insert(t_node *tree, char *str)
 	}
 	else
 	{
-		printf("I m in right\n");
 		if (!tree->right)
 		{
             new	= new_node(str);
@@ -91,13 +107,42 @@ void insert(t_node *tree, char *str)
 	}
 }
 
+int pre = 0;
+
+int str_len(char * str)
+{
+  int l = 0;
+  while (str[l])
+    {
+      l++;
+    }
+  return (l);
+}
 void	print_tree(t_node *root)
 {
-	if (!root)
-		return ;
-	print_tree(root->left);
-	printf("%s\n", root->str);
-	print_tree(root->right);
+  int l = 0;
+  if (!root)
+    return ;
+  print_tree(root->left);
+  if (!pre)
+    pre = l = str_len(root->str);
+  else
+    {
+      l = str_len(root->str);
+      if (l > pre)
+	{
+	  write(1, "\n", 1);
+	  pre = l;
+	}
+      else 
+	write(1, " ", 1);
+    }
+  while (l)
+    {
+    write(1, root->str++, 1);
+    l--;
+    }
+  print_tree(root->right);
 }
 
 int	main(int argc, char **argv)
@@ -106,20 +151,19 @@ int	main(int argc, char **argv)
 	t_node *root;
 	if (argc == 2)
 	{
-		tab = str_split(argv[1]);
-		printf("I m in main!\n");
-		int i = 0;
-//		if (tab[i])??
-		root = new_node(tab[i]);
-		i++;
-		while (tab[i])
+	  tab = str_split(argv[1]);
+	  int i = 0;
+	  if (tab)
+	    {
+	      root = new_node(tab[i]);
+	      i++;
+	      while (tab[i])
 		{
-			printf("%s\n", tab[i]);
-			insert(root, tab[i]);
-			i++;
+		  insert(root, tab[i]);
+		  i++;
 		}
-		printf("Here is the tree\n");
-		print_tree(root);
+	      print_tree(root);
+	    }
 	}
-	printf("\n");
+	write(1, "\n", 1);
 }

@@ -36,7 +36,8 @@ char **str_split(char *str)
         }
         word_count += found;
     }
-	
+    if (!word_count)
+      return (NULL);	
 	tab = malloc(sizeof(char **) * word_count + 1);
 	tab[word_count] = NULL;
     i =	0;
