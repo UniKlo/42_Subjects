@@ -26,35 +26,36 @@ void	permutation(int *arr, int l, int r, int n)
 
 int    **range_comb(int n)
 {
-  int *arr = malloc(sizeof(int) * n);
   int i = 0;
-  while (i < n)
-    {
-      arr[i] = i;
-      i++;
-    }
-  i = 0;
-  while(i < n)
-    {
-      printf("arr: %d\n", arr[i]);
-      i++;
-    }
-  int j = n - 1;
+  int j = n;
   int **tab = NULL;
   int factorial = 1;
-  j = n;
+  
   while ( j )
     {
       factorial *= j;
       j--;
     }
   printf("factorial: %d\n", factorial);
+  tab = malloc(sizeof(int *) * (factorial + 1));
+  tab[factorial] = NULL;
+  
   i = 0;
-  j = n - 1;
-
-  tab = malloc(sizeof(int *) * factorial); 
+  while (tab[i])
+    {
+      tab[i] = malloc(sizeof(int) * n);
+      tab[i] = NULL;
+      i++;
+    }
+  /*
+  i = 0;
+  while(i < n)
+    {
+      printf("arr: %d\n", tab[i]);
+      i++;
+      }*/
   //  permutation(arr, i , j, tab);
-  permutation(arr, i , j, n);
+  //  permutation(arr, i , j, n);
   return (tab);
 }
 
