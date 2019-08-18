@@ -9,52 +9,72 @@ void swap(int *i, int *l)
   l = tmp;
 }
 
-void	permutation(int *arr, int l, int r, int n)
+void	add_to_tab(int *arr, int end, int **ret)
 {
-  if (l == r)
-    ;
-  for (int i = l; i <= r; i++)
+  static int i = 1;
+  int j = 0;
+
+  while (j < end)
     {
-      swap(&arr[l], &arr[i]);
-      int j = 0;
-      while (j < n)
-	printf("%d", arr[j++]);
+      ret[i][j] = arr[j];
+      j++;
     }
-  //  permutation(arr, l, r);
-  //  swap (i, l);
+  i++;
+}
+
+void	permutation(int *arr, int beg, int end, int **ret)
+{
+  if (beg == end)
+    {
+      add_to_tab(arr, end, ret);
+    }
+  for (int i = 0; i < end ; i++)
+    {
+      swap(&arr[beg], &arr[i]);
+      permutation(arr, beg + 1, end, ret);
+      swap(&arr[beg], &arr[i]);
+    }
+}
+
+int	nbr_factorial(int n)
+{
+  int factorial = 1;
+  while (n)
+  {
+    factorial *= n;
+    n--;
+  }
+  return (factorial);
 }
 
 int    **range_comb(int n)
 {
-  int *arr = malloc(sizeof(int) * n);
+  int **tab = NULL;
+  int fac = nbr_factorial(n);
+  
+  if (!n)
+    return (NULL);
+
+  printf("factorial: %d\n", fac);
+  tab = malloc(sizeof(int *) * (fac + 1));
+  tab[fac] = NULL;
+  
   int i = 0;
   while (i < n)
     {
-      arr[i] = i;
+      tab[i] = malloc(sizeof(int) * n);
       i++;
     }
+  printf("i m here\n");
+  printf("%p\n", tab[0]);
   i = 0;
-  while(i < n)
+  while (i < n)
     {
-      printf("arr: %d\n", arr[i]);
+      tab[0][i] = i + 1;
+      printf("%d ", tab[0][i]);
       i++;
     }
-  int j = n - 1;
-  int **tab = NULL;
-  int factorial = 1;
-  j = n;
-  while ( j )
-    {
-      factorial *= j;
-      j--;
-    }
-  printf("factorial: %d\n", factorial);
-  i = 0;
-  j = n - 1;
-
-  tab = malloc(sizeof(int *) * factorial); 
-  //  permutation(arr, i , j, tab);
-  permutation(arr, i , j, n);
+  permutation(tab[0], 0, n, tab);
   return (tab);
 }
 
@@ -63,19 +83,20 @@ int	main(int argc, char **argv)
   if (argc == 2)
     {
       int n = atoi(argv[1]);
-      int	**arr = range_comb(n);
+      int **arr = range_comb(n);
       int i = 0;
+      arr = NULL;
       while (i < 50)
 	{
 	  int j = 0;
 	  while (j < n)
 	    {
-	      printf("%d ", arr[i][j]);
+	      //	      printf("%d ", arr[i][j]);
 	      j++;
 	    }
+	  i++;
 	}
       printf("\n");
-      i++;
     }
 
 }
