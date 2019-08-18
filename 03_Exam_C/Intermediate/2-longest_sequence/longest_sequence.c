@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 23:38:09 by khou              #+#    #+#             */
-/*   Updated: 2019/03/05 00:33:21 by khou             ###   ########.fr       */
+/*   Updated: 2019/08/18 00:11:00 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ typedef struct s_node
 	struct s_node *right;
 }     t_node;
 
-#define MAX(a,b) (a > b? a : b)
+int max_nbr(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 int max = 0;
 
