@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   longest_sequence.c                                 :+:      :+:    :+:   */
+/*   longest_sequence_v1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 23:38:09 by khou              #+#    #+#             */
-/*   Updated: 2019/08/18 00:11:00 by khou             ###   ########.fr       */
+/*   Created: 2019/08/18 00:14:13 by khou              #+#    #+#             */
+/*   Updated: 2019/08/18 16:41:02 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,123 +14,97 @@
 
 typedef struct s_node
 {
-	int value;
-	struct s_node *left;
-	struct s_node *right;
+    int value;
+    struct s_node *left;
+    struct s_node *right;
 }     t_node;
 
 int max_nbr(int a, int b)
 {
-	if (a > b)
-		return (a);
-	return (b);
+    if (a > b)
+        return (a);
+    return (b);
 }
 
-int max = 0;
-
-int longest_sequence(struct s_node *node)
+int	longest_sequence(t_node *tree)
 {
-	if (!node)
-		return (0);
-	static int tmp = 1;
-	if (node->left)
+	int l = 0;
+	int r = 0;
+	if (!tree)
+		return (1);
+	l = longest_sequence(tree->left);
+	r = longest_sequence(tree->right);
+	if (tree->left)
 	{
-		if (node->value + 1 == node->left->value)
-		{
-			tmp++;
-			if (tmp > max)
-				max = tmp;
-		}
-		else
-			tmp = 1;
-		longest_sequence(node->left);	
+		if (tree->left->value == tree->value + 1)
+			l += 1;
 	}
-	tmp = 1;
-	if (node->right)
+	else if (tree->right)
 	{
-		if (node->value + 1 == node->right->value)
-		{
-			tmp++;
-			if (tmp > max)
-                max = tmp;
-        }
-		else
-            tmp	= 1;
-        longest_sequence(node->right);
+		if (tree->right->value == tree->value + 1)
+			r += 1;
 	}
-	tmp = 1;
-	return (MAX(tmp,max));
+//	printf("tree: %d, l: %d, r: %d, max:%d\n", tree->value, l , r, max_nbr(l, r));
+	
+	return (max_nbr(l, r));
+	
+}
+/*
+#include <stdlib.h>
+
+t_node *new_node(int n)
+{
+	t_node *new = malloc(sizeof(t_node));
+
+	new->value = n;
+	new->left = NULL;
+	new->right = NULL;
+	return (new);
 }
 
-/*
+void	print_tree(t_node *root)
+{
+	if (!root)
+		return ;
+	print_tree(root->left);
+	print_tree(root->right);
+		printf("%d\n", root->value);
+
+}
+
 int main()
 {
 
-	t_node tree[6];
+    t_node *tree = new_node(10);
 
-	tree[0].value = 10;
-	tree[0].left = &tree[1];
-	tree[0].right = NULL;
+    tree->left = new_node(5);
 
-	tree[1].value = 5;
-    tree[1].left = &tree[2];
-    tree[1].right = &tree[3];
+    tree->left->left = new_node(6);
+	tree->left->right = new_node(9);
 
-	tree[2].value = 6;
-    tree[2].left = &tree[4];
-    tree[2].right = &tree[5];
-	
-	tree[3].value = 9;
-    tree[3].left = NULL;
-    tree[3].right = NULL;
+    tree->left->left->left = new_node(7);
+    tree->left->left->right = new_node(13);
 
-	tree[4].value = 7;
-    tree[4].left = NULL;
-    tree[4].right = NULL;
+	print_tree(tree);
+    printf("tree max: %d\n", longest_sequence(tree));
 
-	tree[5].value = 7;
-    tree[5].left = NULL;
-    tree[5].right = NULL;
+	t_node *tree1 = new_node(5);
 
-	printf("max: %d\n", longest_sequence(tree));
+	tree1->left = new_node(6);
+	tree1->right = new_node(4);
 
-	t_node tree[8];
+	tree1->right->left = new_node(9);
+	tree1->right->right = new_node(3);
 
-    tree[0].value = 5;
-    tree[0].left = &tree[1];
-    tree[0].right = &tree[2];
+	tree1->right->left->left = new_node(3);
+	tree1->right->left->right = new_node(2);
 
-    tree[1].value = 6;
-    tree[1].left = NULL;
-    tree[1].right = NULL;
-
-    tree[2].value = 6;
-    tree[2].left = &tree[3];
-    tree[2].right = &tree[4];
-
-    tree[3].value = 7;
-    tree[3].left = &tree[5];
-    tree[3].right = &tree[6];
-
-    tree[4].value = 3;
-    tree[4].left = NULL;
-    tree[4].right = &tree[7];
-
-    tree[5].value = 3;
-    tree[5].left = NULL;
-    tree[5].right = NULL;
-
-	tree[6].value = 2;
-    tree[6].left = NULL;
-    tree[6].right = NULL;
-
-	tree[7].value = 2;
-    tree[7].left = NULL;
-    tree[7].right = NULL;
-
-	t_node tree2[1]; tree2[0].value = 1;
-	tree2[0].left = tree2[0].right = 0;
-	printf("max: %d\n", longest_sequence(tree2));
+	tree1->right->right->right = new_node(2);
+	printf("tree1 max: %d\n", longest_sequence(tree1));
+    t_node tree2[1]; tree2[0].value = 1;
+    tree2[0].left = tree2[0].right = 0;
+    printf("tree2 max: %d\n", longest_sequence(tree2));
 
 }
+
 */

@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 00:14:13 by khou              #+#    #+#             */
-/*   Updated: 2019/08/18 16:12:48 by khou             ###   ########.fr       */
+/*   Updated: 2019/08/18 16:41:02 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
 
 typedef struct s_node
 {
@@ -44,12 +44,12 @@ int	longest_sequence(t_node *tree)
 		if (tree->right->value == tree->value + 1)
 			r += 1;
 	}
-	printf("tree: %d, l: %d, r: %d, max:%d\n", tree->value, l , r, max_nbr(l, r));
+//	printf("tree: %d, l: %d, r: %d, max:%d\n", tree->value, l , r, max_nbr(l, r));
 	
 	return (max_nbr(l, r));
 	
 }
-
+/*
 #include <stdlib.h>
 
 t_node *new_node(int n)
@@ -107,3 +107,4 @@ int main()
 
 }
 
+*/
