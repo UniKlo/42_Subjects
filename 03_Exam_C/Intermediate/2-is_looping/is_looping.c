@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 22:26:25 by khou              #+#    #+#             */
-/*   Updated: 2019/08/19 22:29:26 by khou             ###   ########.fr       */
+/*   Updated: 2019/08/19 22:33:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,36 @@ int	is_looping(struct s_node *node)
 	}
 	return(0);
 }
+
+/*
+#include <stdio.h>
+#include <stdlib.h>
+t_node	*new_node(int n)
+{
+	t_node *new;
+	new = malloc(sizeof(t_node));
+	new->value = n;
+	new->next = NULL;
+	return (new);
+}
+int		main()
+{
+	t_node *root;
+	root = new_node(1);
+	root->next = new_node(2);
+	root->next->next = new_node(3);
+	root->next->next->next = new_node(4);
+	root->next->next->next->next = new_node(5);
+	root->next->next->next->next->next = new_node(6);
+	root->next->next->next->next->next->next = root->next;
+	printf("is Loop: %d\n", is_looping(root));
+	t_node *root1;
+    root1 = new_node(1);
+    root1->next = new_node(2);
+    root1->next->next = new_node(3);
+    root1->next->next->next = new_node(4);
+    root1->next->next->next->next = new_node(5);
+    root1->next->next->next->next->next = new_node(6);
+    printf("not loop: %d\n", is_looping(root1));
+}
+*/
