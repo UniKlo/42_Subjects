@@ -19,7 +19,7 @@ struct s_node {
 
 void print_left(struct s_node *root)
 {
-  if (!root || !root->left)
+  if (!root || (!root->left && !root->right))
     return ;
   printf(" %d", root->value);
   print_left(root->left);
@@ -38,7 +38,7 @@ void	print_leaf(struct s_node *root)
 
 void print_right(struct s_node *root)
 {
-  if (!root || !root->right)
+  if (!root || (!root->right && !root->left))
     return ;
   print_right(root->right);
   printf(" %d", root->value);;
@@ -57,7 +57,7 @@ void perimeter(struct s_node *root)
 
 }
 
-/*
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -88,7 +88,6 @@ int     main()
   root = new_node(92);
   root->left = new_node(85);
   root->left->left = new_node(79);
-  root->left->left->left = new_node(1000);
 
   root->left->left->right = new_node(10);
   root->left->left->right->left = new_node(96);
@@ -161,5 +160,13 @@ int     main()
   printf("root of NULL\n");
   perimeter(root6);
 
+  struct s_node *root7;
+  root7 = new_node(92);
+  root7->left = new_node(85);
+  root7->left->left = new_node(79);
+  root7->left->left->right = new_node(1000);
+  root7->left->left->right->left = new_node(201);
+  printf("4 left node with one right in btw\n");
+  perimeter(root7);
+
 }
-*/

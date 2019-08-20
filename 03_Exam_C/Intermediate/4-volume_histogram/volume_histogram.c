@@ -1,32 +1,68 @@
 #include <stdio.h>
 
+int sml_area(int a, int b)
+{
+  if (a < b)
+    return (a);
+  return (b);
+}
+
 int    volume_histogram(int *arr, int size)
 {
   int	ret = 0;
-  int i = 0;
-  int j = size - 1;
-  while(i < size)
+  int n = 0;
+  int r_wall = 0;
+  int l_wall = 0;
+  while (n < size)
     {
-      if (arr[i])
+      if (arr[n])
 	{
-	  // int dis= 0;
-	  int i1 = 0;
-	  int tmp = 0;
-	  while (arr[i + i1] <= arr[i])
-	    i1++;
-	  tmp = arr[i]*(i1) ;
-	  printf("current area: %d, arr[%i]: %d, arr[%d]: %d\n",
-		 tmp, i, arr[i], i+i1,  arr[i+i1]);
-	  i = i1;
-	  ret += tmp;
-
+	  l_wall = n;
+	  break;
 	}
-      i++;
+      n++;
     }
-  while (j)
+
+  n = size - 1;
+  while (n > -1)
     {
-      j--;
+      if (arr[n])
+	{
+          r_wall = n;
+          break;
+        }
+      n--;
     }
+  //  printf("l_wall: %d, r_wall:%d \n",l_wall, r_wall);
+  n = 0;
+  while (n < size)
+    {
+      int l_max = 1;
+      int r_max = 1;
+      int i = 0;
+      int j = size - 1;
+      while (i <= n)
+	{
+	  if (arr[i] > l_max)
+	    l_max = arr[i];
+	  i++;
+	}
+      while (j >= n)
+	{
+          if (arr[j] > r_max)
+            r_max = arr[j];
+          j--;
+	}
+      //      printf("arr[%d]: %d, left wall is %d, right wall is %d\n", n, arr[n], l_max, r_max);
+      
+      if (n >= l_wall && n <= r_wall)
+	{
+	  ret += sml_area(l_max, r_max) - arr[n];
+	  // printf("sml: %d, current is %d, total is %d\n", sml_area(l_max, r_max), arr[n] * sml_area(l_max, r_max) - arr[n], ret);
+	}
+      n++;
+    }
+
   return (ret);
 }
 
@@ -35,5 +71,10 @@ int	main()
   int    histogram[] = {0, 0, 4, 0, 0, 6, 0, 0, 3, 0, 5, 0, 1, 0, 0, 0};
   int    size = 16;
 
-  printf("%d\n", volume_histogram(histogram, size));
+  printf("case size: %d, area is %d\n", size, volume_histogram(histogram, size));
+
+  int    histogram1[] = {1, 0, 2, 0, 2};
+  size = 5;
+
+  printf("case size: %d, area is %d\n", size, volume_histogram(histogram1, size));
 }
