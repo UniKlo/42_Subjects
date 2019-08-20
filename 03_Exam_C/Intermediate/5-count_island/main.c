@@ -47,6 +47,7 @@ int main(int argc, char **argv)
       printf("failed to read\n");
       return (0);
     }
+  close(fd);
   int i = 0;
   int map_w = 0; //map_with
   int find_nl = 0;
@@ -92,7 +93,8 @@ int main(int argc, char **argv)
       printf("invalide map width\n");
       return (0);
     }
-  printf("\nnbr_byte: %d, map_width: %d, map_height: %d\n",nbr_byte, map_w, map_h);
+  printf("\nnbr_byte: %d vs %d = map_width: %d, map_height: %d\n",nbr_byte, 
+	 map_w * map_h, map_w, map_h);
   //width including nl, height is not index
   i = 0;
   char c = 48;
