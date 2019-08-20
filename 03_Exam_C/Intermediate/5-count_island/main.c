@@ -6,7 +6,7 @@
 
 void	fill(char *buff, int nbr_byte,int map_w, int i, char c)
 {
-  if (i > nbr_byte || i < 0)
+  if (i >= nbr_byte || i < 0)
     return ;
   if (buff[i] == 88)
     {
@@ -32,10 +32,12 @@ int main(int argc, char **argv)
       printf("Wrong nbr of args\n");
       return (0);
     }
+
   int fd = open(argv[1], O_RDONLY);
   if (fd == -1)
     {
       printf("failed to open\n");
+      return (0);
     }
   char buff[500000];
   int nbyte = 500000;
@@ -43,6 +45,7 @@ int main(int argc, char **argv)
   if (nbr_byte == -1)
     {
       printf("failed to read\n");
+      return (0);
     }
   int i = 0;
   int map_w = 0; //map_with
@@ -81,6 +84,13 @@ int main(int argc, char **argv)
 	    }
 	}
       i++;
+    }
+  if (++cmp == map_w)
+    cmp = 0;
+  else
+    {
+      printf("invalide map width\n");
+      return (0);
     }
   printf("\nnbr_byte: %d, map_width: %d, map_height: %d\n",nbr_byte, map_w, map_h);
   //width including nl, height is not index
