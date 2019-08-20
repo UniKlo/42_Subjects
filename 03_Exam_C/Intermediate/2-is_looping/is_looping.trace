@@ -1,0 +1,80 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e1z3r5p19.42.us.org
+Darwin 17.5.0 x86_64
+$> date
+Mon Aug 19 22:29:58 PDT 2019
+$> gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+$> clang --version
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2019/c-exam-alone-in-the-dark-intermediate/practice-exam_20190820/khou
+
+= Git history ==================================================================
+$> git -C /var/folders/3z/gw60s66d7f5_4mws7w0h6w3w0000gp/T/tmpzSf7E8/user log --pretty='%H - %an, %ad : %s'
+541739fa1b58e38d503fd9bc2d885f3f3d829209 - Khloe Hou, Mon Aug 19 22:29:50 2019 -0700 : 1
+2ccc3bdb0d7b9078b6078f5fb350b0aa9553814c - Khloe Hou, Mon Aug 19 22:27:32 2019 -0700 : 1
+f8ea7db156beed260a88174cf89eff4e2945c244 - Khloe Hou, Mon Aug 19 22:19:42 2019 -0700 : 1
+67a0621bb66c8a935f4a794911c695650fa3cfd5 - Khloe Hou, Mon Aug 19 22:15:57 2019 -0700 : 1
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/3z/gw60s66d7f5_4mws7w0h6w3w0000gp/T/tmpzSf7E8/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  966 Aug 19 22:30 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought  102 Aug 19 22:30 equation
+drwxr-xr-x  3 deepthought  deepthought  102 Aug 19 22:30 is_looping
+drwxr-xr-x  3 deepthought  deepthought  102 Aug 19 22:30 stack
+
+/var/folders/3z/gw60s66d7f5_4mws7w0h6w3w0000gp/T/tmpzSf7E8/user/equation:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1176 Aug 19 22:30 equation.c
+
+/var/folders/3z/gw60s66d7f5_4mws7w0h6w3w0000gp/T/tmpzSf7E8/user/is_looping:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1277 Aug 19 22:30 is_looping.c
+
+/var/folders/3z/gw60s66d7f5_4mws7w0h6w3w0000gp/T/tmpzSf7E8/user/stack:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1769 Aug 19 22:30 stack.c
+ 
+= is_looping ===================================================================
+$> gcc -Wextra -Wall -Werror main.c is_looping.c -o user_exe 
+
+= Test 1 ===================================================
+$> ./03hji3nykujeak2ip5jjf9kc 0 100 42
+$> diff -U 3 user_output_test1 test1.output | cat -e
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./tzybygl9twv2q8cdrl8xisp4 1 100 42
+$> diff -U 3 user_output_test2 test2.output | cat -e
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./772qqzrxkgwvdm9m37l9mj7o 1 100000 5
+$> diff -U 3 user_output_test3 test3.output | cat -e
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./hzr35yz2er1kzqh8u3vibc1g 0 100000 5
+$> diff -U 3 user_output_test4 test4.output | cat -e
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./431v9vus2bvc536ru512geqa 1 500000 1
+$> diff -U 3 user_output_test5 test5.output | cat -e
+
+Diff OK :D
+Grade: 1
+
+= Final grade: 1 ===============================================================
