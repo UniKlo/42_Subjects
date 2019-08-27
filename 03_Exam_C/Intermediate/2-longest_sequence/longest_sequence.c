@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:42:20 by khou              #+#    #+#             */
-/*   Updated: 2019/08/27 00:32:22 by khou             ###   ########.fr       */
+/*   Updated: 2019/08/27 01:05:00 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,9 @@ int main()
     tree4->left->left = new_node(16);
     tree4->right->left = new_node(80);
     printf("tree4 max: 2 == %d\n", longest_sequence(tree4));
+
+	t_node *tree5 = new_node(1);
+	tree5->left = new_node(2);
+	printf("tree5 max: 2 == %d\n", longest_sequence(tree5));
 }
 */
