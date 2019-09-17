@@ -3,129 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   longest_sequence.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/18 16:42:20 by khou              #+#    #+#             */
-/*   Updated: 2019/08/27 01:05:00 by khou             ###   ########.fr       */
+/*   Created: 2019/09/10 09:34:06 by exam              #+#    #+#             */
+/*   Updated: 2019/09/10 10:20:05 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 typedef struct s_node
 {
-    int value;
-    struct s_node *left;
-    struct s_node *right;
-}     t_node;
+	int value;
+	struct s_node *left;
+	struct s_node *right;
+}			t_node;
 
-int max_nbr(int a, int b)
+int max = 0;
+
+int cur_sequence(t_node *node)
 {
-    if (a > b)
-        return (a);
-    return (b);
-}
-
-int max_len = 0;
-
-int	sequence(t_node *tree)
-{
-	int l = 0;
-	int r = 0;
-	if (!tree)
+	if (!node)
 		return (0);
-	l = sequence(tree->left);
-	r = sequence(tree->right);
-	if (tree->left)
+	int l = cur_sequence(node->left) + 1;
+	int r = cur_sequence(node->right) + 1;
+
+	if (node->left)
 	{
-		if (tree->left->value == tree->value + 1)
-			l += 1;
+		if (node->value + 1 != node->left->value)
+			l = 1;
 	}
-	if (tree->right)
-	{
-		if (tree->right->value == tree->value + 1)
-			r += 1;
-	}
-	if (!tree->left && !tree->right)
-	{
-		max_len = max_nbr(1, max_len);
-		return (1);
-	}
-	max_len = max_nbr(max_nbr(l, r), max_len);
-	return (max_nbr(l, r));
-	
+    if (node->right)
+    {
+        if (node->value + 1 != node->right->value)
+            r = 1;
+    }
+	max = l > max ? l : max;
+	max = r > max ? r : max;
+	int cur = l > r ? l : r;
+	return (cur);
 }
 
-int longest_sequence(t_node *tree)
+int	longest_sequence(struct s_node *node)
 {
-	if (!tree)
-        return (0);
-	sequence(tree);
-	return (max_len);
+	if (!node)
+		return (0);
+	cur_sequence(node);
+	return (max);
 }
-
 /*
 #include <stdlib.h>
 #include <stdio.h>
 
-t_node *new_node(int n)
+t_node	*new_node(int nbr)
 {
 	t_node *new = malloc(sizeof(t_node));
 
-	new->value = n;
+	new->value = nbr;
 	new->left = NULL;
 	new->right = NULL;
 	return (new);
 }
 
-void	print_tree(t_node *root)
+void	print_tree(t_node *tree)
 {
-	if (!root)
+	if (!tree)
 		return ;
-	print_tree(root->left);
-	print_tree(root->right);
-		printf("%d\n", root->value);
-
+	print_tree(tree->left);
+	printf("%d\n", tree->value);
+	print_tree(tree->right);
 }
 
 int main()
 {
+	t_node *root = new_node(10);
 
-    t_node *tree = new_node(10);
+	root->left = new_node(5);
+	root->left->left = new_node(6);
 
-    tree->left = new_node(5);
+	root->left->right = new_node(9);
+	root->left->right->right = new_node(10);
+	root->left->right->right->right = new_node(11);
 
-    tree->left->left = new_node(6);
-	tree->left->right = new_node(9);
+	print_tree(root);
+	printf("T/F: %d\n", longest_sequence(root));
 
-    tree->left->left->left = new_node(7);
-    tree->left->left->right = new_node(13);
-//  print_tree(tree);
-    printf("tree max: 3 == %d\n", longest_sequence(tree));
-	max_len = 0;
-    t_node *tree1 = new_node(5);
-    tree1->left = new_node(6);
-    tree1->right = new_node(4);
-    tree1->right->left = new_node(9);
-    tree1->right->right = new_node(3);
-    tree1->right->left->left = new_node(3);
-    tree1->right->left->right = new_node(2);
-    tree1->right->right->right = new_node(2);
-    printf("tree1 max: 2 == %d\n", longest_sequence(tree1));
-	max_len = 0;
-    t_node *tree2 = new_node(1);
-    printf("tree2 max: 1 == %d\n", longest_sequence(tree2));
-	max_len = 0;
-	t_node *tree3 = NULL;
-    printf("tree3 max: 0 == %d\n", longest_sequence(tree3));
-	max_len = 0;
-	t_node *tree4 = new_node(30);
-    tree4->left = new_node(15);
-    tree4->right = new_node(41);
-    tree4->left->left = new_node(16);
-    tree4->right->left = new_node(80);
-    printf("tree4 max: 2 == %d\n", longest_sequence(tree4));
+	max = 0;
+	t_node *root1 = new_node(30);
+	root1->left = new_node(15);
+    root1->left->left = new_node(61);
 
-	t_node *tree5 = new_node(1);
-	tree5->left = new_node(2);
-	printf("tree5 max: 2 == %d\n", longest_sequence(tree5));
+	root1->left->right = new_node(41);
+    root1->left->right->left = new_node(80);
+    print_tree(root1);
+    printf("T/F: %d\n", longest_sequence(root1));
 }
 */

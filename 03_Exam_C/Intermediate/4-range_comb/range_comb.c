@@ -65,16 +65,16 @@ int    **range_comb(int n)
       tab[i] = malloc(sizeof(int) * n);
       i++;
     }
-  printf("i m here\n");
+  printf("i m here in range_comb\n");
   printf("%p\n", tab[0]);
   i = 0;
   while (i < n)
     {
-      tab[0][i] = i + 1;
+      tab[0][i] = i;
       printf("%d ", tab[0][i]);
       i++;
     }
-  permutation(tab[0], 0, n, tab);
+  //  permutation(tab[0], 0, n, tab);
   return (tab);
 }
 
