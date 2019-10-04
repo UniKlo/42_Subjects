@@ -1,17 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void swap(int *i, int *l)
+void swap(int *i, int *j)
 {
-  int *tmp = 0;
-  tmp = i;
-  i = l;
-  l = tmp;
+  printf("i: %d, j: %d\n", *i, *j);
+  int tmp = *i;
+  *i = *j;
+  *j = tmp;
 }
 
-void	add_to_tab(int *arr, int end, int **ret)
+void    add_to_tab(int *arr, int end, int **ret)
 {
-  static int i = 1;
+  printf("I m in adding\n");
+  static int i = 0;
   int j = 0;
 
   while (j < end)
@@ -22,17 +23,20 @@ void	add_to_tab(int *arr, int end, int **ret)
   i++;
 }
 
-void	permutation(int *arr, int beg, int end, int **ret)
+void    permutation(int *arr, int beg, int end, int **ret)
 {
   if (beg == end)
     {
       add_to_tab(arr, end, ret);
     }
-  for (int i = 0; i < end ; i++)
+  else
     {
-      swap(&arr[beg], &arr[i]);
-      permutation(arr, beg + 1, end, ret);
-      swap(&arr[beg], &arr[i]);
+      for (int i = beg; i < end ; i++)
+        {
+          swap(&arr[beg], &arr[i]);
+          permutation(arr, beg + 1, end, ret);
+          swap(&arr[beg], &arr[i]);
+        }
     }
 }
 
@@ -49,32 +53,30 @@ int	nbr_factorial(int n)
 
 int    **range_comb(int n)
 {
-  int **tab = NULL;
   int fac = nbr_factorial(n);
-  
+  int **tab = malloc(sizeof(int *) * (fac + 1));
+  int *org = malloc(sizeof(int) * n);  
   if (!n)
     return (NULL);
 
   printf("factorial: %d\n", fac);
-  tab = malloc(sizeof(int *) * (fac + 1));
   tab[fac] = NULL;
   
   int i = 0;
   while (i < n)
     {
-      tab[i] = malloc(sizeof(int) * n);
+      org[i] = i;
       i++;
     }
   printf("i m here in range_comb\n");
-  printf("%p\n", tab[0]);
+
   i = 0;
-  while (i < n)
+  while (i < fac)
     {
-      tab[0][i] = i;
-      printf("%d ", tab[0][i]);
+      tab[i] = malloc(sizeof(int) * n);
       i++;
     }
-  //  permutation(tab[0], 0, n, tab);
+  permutation(org, 0, n, tab);
   return (tab);
 }
 
@@ -84,19 +86,20 @@ int	main(int argc, char **argv)
     {
       int n = atoi(argv[1]);
       int **arr = range_comb(n);
+      int nbr_combination = nbr_factorial(n);
       int i = 0;
-      arr = NULL;
-      while (i < 50)
+      printf("I m in the main!\n");
+      while (i < nbr_combination)
 	{
 	  int j = 0;
 	  while (j < n)
 	    {
-	      //	      printf("%d ", arr[i][j]);
+	      printf("%d ", arr[i][j]);
 	      j++;
 	    }
+	  printf("\n");
 	  i++;
 	}
       printf("\n");
     }
-
 }
