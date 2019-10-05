@@ -3,8 +3,10 @@
 
 char *ft_strdup(char *str, int i, int j)
 {
-  char *ret = malloc(sizeof(char) * (j - i + 1));
+  int ret_len = j - i + 1;
+  char *ret = malloc(sizeof(char) * ret_len);
 
+  ret[ret_len] = '\0';
   int n = 0;
   while (i <= j)
     {
@@ -30,35 +32,48 @@ char    *longest_subarray(char *str)
 	nbr_odd++;
       i++;
     }
-  printf("odd: %d, even: %d\n", nbr_odd, nbr_even);
   int max_len = nbr_odd < nbr_even ? nbr_odd * 2 : nbr_even * 2;
   int	str_len = nbr_odd + nbr_even;
-  printf("max: %d\n", max_len);
   i = 0;
-  while (str[i])
+  while (max_len >= 2)
     {
-      int j = str_len;
-      int tmp = i;
-
-      while (j)
+      int beg = i;
+      int end = str_len - 1;
+      while (end - beg + 1 >= max_len)
 	{
-	  while (tmp <= j)
+	  int tmp_odd = nbr_odd;
+	  int tmp_even = nbr_even;
+	  int tmp = beg;
+	  int j = 0;
+	  while (j < beg)
 	    {
-	      printf("%c", str[tmp]);
-	      tmp++;
+	      if (str[j] % 2 == 0)
+		tmp_even--;
+	      else
+		tmp_odd--;
+	      j++;
 	    }
-	  printf("\n");
-	  //	  printf("j: %d\n", j);
-	    j--;
+	  j = end;
+	  while (j >= beg + max_len)
+	    {
+	      if (str[j] % 2 == 0)
+		tmp_even--;
+	      else
+		tmp_odd--;
+	      j--;
+	    }
+	  if (tmp_even == tmp_odd)
+	    return (ret = ft_strdup(str, beg, beg + max_len - 1));
+	  beg++;
 	}
-      i++;
+      max_len--;
     }
   return (ret);
 }
 
 int main()
 {
-  char *input = "134";
+  char *input = "1357913579024680213579";
 
   printf("%s\n", longest_subarray(input));
 
