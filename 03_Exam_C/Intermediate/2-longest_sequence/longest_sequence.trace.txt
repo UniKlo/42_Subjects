@@ -1,0 +1,69 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e1z2r8p6.42.us.org
+Darwin 17.4.0 x86_64
+$> date
+Tue Sep 10 10:21:44 PDT 2019
+$> gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+$> clang --version
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin17.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2019/c-exam-alone-in-the-dark-intermediate/exam_20190910/khou
+
+= Git history ==================================================================
+$> git -C /var/folders/nk/z39cfxzd007cn3bzkkhr0msw0000gp/T/tmprv2p3J/user log --pretty='%H - %an, %ad : %s'
+f9f064c7e0f84c78b5357512257221713bc5383a - Exam 42, Tue Sep 10 10:21:33 2019 -0700 : 2
+e16d388039939797402efefa262ae8a3cf82743a - Exam 42, Tue Sep 10 09:32:04 2019 -0700 : 1
+d51ff9c2173982dc5896fddeff411ac8c559afb2 - Exam 42, Tue Sep 10 09:14:03 2019 -0700 : 0
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/nk/z39cfxzd007cn3bzkkhr0msw0000gp/T/tmprv2p3J/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  741 Sep 10 10:21 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought  102 Sep 10 10:21 flood_fill
+drwxr-xr-x  3 deepthought  deepthought  102 Sep 10 10:21 is_anagram
+drwxr-xr-x  3 deepthought  deepthought  102 Sep 10 10:21 longest_sequence
+
+/var/folders/nk/z39cfxzd007cn3bzkkhr0msw0000gp/T/tmprv2p3J/user/flood_fill:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1525 Sep 10 10:21 flood_fill.c
+
+/var/folders/nk/z39cfxzd007cn3bzkkhr0msw0000gp/T/tmprv2p3J/user/is_anagram:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1385 Sep 10 10:21 is_anagram.c
+
+/var/folders/nk/z39cfxzd007cn3bzkkhr0msw0000gp/T/tmprv2p3J/user/longest_sequence:
+total 8
+-rw-r--r--  1 deepthought  deepthought  2414 Sep 10 10:21 longest_sequence.c
+ 
+= longest_sequence =============================================================
+$> gcc -Wextra -Wall -Werror main.c longest_sequence.c -o user_exe 
+
+= Test 1 ===================================================
+$> ./zq2bxtbucj2bu5bx6o1dt703 657782 8
+$> diff -U 3 user_output_test1 test1.output | cat -e
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./hh3sn7yris075mukz21gtqyj 1244557 13
+$> diff -U 3 user_output_test2 test2.output | cat -e
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./9agxn3sidm4c7yypgkly88p9 100 3
+$> diff -U 3 user_output_test3 test3.output | cat -e
+
+Diff OK :D
+Grade: 1
+
+= Final grade: 1 ===============================================================
