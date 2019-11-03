@@ -16,46 +16,80 @@ int str_len(char *str)
 
 int	main(int argc, char **argv)
 {
+  int add = 1;
+  int sign = 0;
+  argc = 0;
+  //what type operation and jump over the sign
+  if (argv[1][0] == '-' && argv[2][0] == '-') //negtive but adding
+    {
+      add = -1;
+      argv[1]++;
+      argv[2]++;
+    }
+  else if (argv[1][0] == '-') //subtract
+    {
+      add = 0;
+      argv[1]++;
+      sign = 1;
+    }
+  else if (argv[2][0] == '-') //subtract
+    {
+      add = 0;
+      argv[2]++;
+      sign = 2;
+    }
+  char *big = argv[1];
+  char *sml = argv[2];
+  int l1 = str_len(argv[1]);//length with no sign
+  int l2 = str_len(argv[2]);
+  if (add == 0)
+    {
+      if (l1 < l2)
+	{
+	  big = argv[2];
+	  sml = argv[1];
+	  if (sign == 1)
+	    sign = 0;
+	}
+      else if (l1 == l2)
+	{
+	  int i = 0;
+	  while (i < l1)
+	    {
+	      if (argv[1][i] < argv[2][i])
+		{
+		  big = argv[2];
+		  sml = argv[1];
+		  if (sign == 1)
+		    sign = 0;
+		  break;
+		}
+	      i++;
+	    }
+	}
+        l1 = str_len(big);
+	l2 = str_len(sml);
+    }
   //whether it is positive or negtive
   int tenth = 0; //adding on counter
-
-  int l1 = str_len(argv[1]);
-  int l2 = str_len(argv[2]);
-  argc = 0;
   int l_ret = l1 > l2 ? l1 + 1 : l2 + 1;
   char *ret = malloc(sizeof(char) * l_ret);
   printf("l1: %d, l2: %d, l_ret: %d\n", l1, l2, l_ret);
-  int add = 1; //whether it is adding
-  if (argv[1][0] == '-' && argv[2][0] == '-')
-    {
-      add = -1;
-      argv[1][0] = '0';
-      argv[2][0] = '0';
-    }
-  else if (argv[1][0] == '-')
-    {
-      add = 0;
-      argv[1][0] = '0';
-    }
-  else if (argv[2][0] == '-')
-    {
-      add = 0;
-      argv[2][0] = '0';
-    }
   int j = l_ret -1;
   if (!ret)
     return (0);
+  //comparing the number
   int d1, d2 = 0;
   int sum = 0;
 
   while (l1 > 0 || l2 > 0)
     {
       if (l1 > 0)
-	d1 = (int)argv[1][l1 - 1] - 48;
+	d1 = (int)big[l1 - 1] - 48;
       else
 	d1 = 0;
       if (l2 > 0)
-	d2 = (int)argv[2][l2 - 1] - 48;
+	d2 = (int)sml[l2 - 1] - 48;
       else
 	d2 = 0;
 
@@ -97,15 +131,23 @@ int	main(int argc, char **argv)
   printf("ret fill up to j: %d\n", j);
   while (j > -1)
     {
-      ret[j] = 0;
+      ret[j] = '0';
       j--;
     }
   j++;
   if (add == -1)
     write (1, "-", 1);
-  printf("%c\n", ret[j]);
-  while (ret[j] == 0)
+  if (sign > 0)
+    write (1, "-", 1);
+  printf("j: %d, char is: %c\n", j,  ret[j]);
+  while (ret[j] == '0')
     j++;
+  if (j == l_ret)
+    {
+      sign = 0;
+      write(1, "0\n", 2);
+      return (0);
+    }
   while (j < l_ret)
     {
       write(1, &ret[j], 1);
