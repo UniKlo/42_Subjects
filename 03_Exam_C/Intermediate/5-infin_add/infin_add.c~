@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int str_len(char * str)
+{
+  int l = 0;
+  while (*str)
+    {
+      str++;
+      l++;
+    }
+  return (l);
+
+}
+
+int	main(int argc, char ** argv)
+{
+  //whether it is positive or negtive
+  int tenth = 0; //adding on counter
+  int l1 = 0;
+  int l2 = 0;
+
+  l1 = str_len(*argv[1]);
+  l2 = str_len(*argv[2]);
+
+  printf("l1: %d, l2: %d\n", l1, l2);
+
+}

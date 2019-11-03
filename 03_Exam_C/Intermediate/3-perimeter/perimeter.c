@@ -21,7 +21,8 @@ void print_left(struct s_node *root)
 {
   if (!root || (!root->left && !root->right))
     return ;
-  printf(" %d", root->value);
+  if (root->left || root->right)
+    printf(" %d", root->value);
   print_left(root->left);
 }
 void	print_leaf(struct s_node *root)
@@ -41,7 +42,8 @@ void print_right(struct s_node *root)
   if (!root || (!root->right && !root->left))
     return ;
   print_right(root->right);
-  printf(" %d", root->value);;
+  if (root->left || root->right)
+    printf(" %d", root->value);
 }
 
 void perimeter(struct s_node *root)
