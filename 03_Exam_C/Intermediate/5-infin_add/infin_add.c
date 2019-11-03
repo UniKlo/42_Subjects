@@ -42,13 +42,13 @@ int	main(int argc, char **argv)
   char *sml = argv[2];
   int l1 = str_len(argv[1]);//length with no sign
   int l2 = str_len(argv[2]);
-  if (add == 0)
+  if (add == 0) //compare its ABS and either 1 or 2 is '-'
     {
-      if (l1 < l2)
+      if (l1 < l2) // compare with length
 	{
 	  big = argv[2];
 	  sml = argv[1];
-	  if (sign == 1)
+	  if (sign == 1) //if ABS 1 < 2 and 1 is -
 	    sign = 0;
 	}
       else if (l1 == l2)
@@ -67,6 +67,8 @@ int	main(int argc, char **argv)
 	      i++;
 	    }
 	}
+      if (sign == 2)
+	sign = 0;
         l1 = str_len(big);
 	l2 = str_len(sml);
     }
@@ -154,5 +156,4 @@ int	main(int argc, char **argv)
       j++;
     }
   write(1, "\n", 1);
-
 }
