@@ -73,11 +73,10 @@ int	main(int argc, char **argv)
   //whether it is positive or negtive
   int tenth = 0; //adding on counter
   int l_ret = l1 > l2 ? l1 + 1 : l2 + 1;
-  char *ret = malloc(sizeof(char) * l_ret);
+  //  char *ret = malloc(sizeof(char) * l_ret);
+  char ret[l_ret];
   printf("l1: %d, l2: %d, l_ret: %d\n", l1, l2, l_ret);
   int j = l_ret -1;
-  if (!ret)
-    return (0);
   //comparing the number
   int d1, d2 = 0;
   int sum = 0;
