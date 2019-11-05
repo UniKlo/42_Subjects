@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef s_node {
+#include <unistd.h>
+typedef struct s_node {
 
   int value;
   int *edge;
@@ -36,8 +36,9 @@ int get_nbr(char *str)
     {
       if (is_stop(*str))
 	break;
-      nbr += *str - 30 + tenth * 10;
+      nbr += *str - 48 + tenth * 10;
       str++;
+      tenth++;
     }
   return (nbr);
 }
@@ -51,9 +52,12 @@ int main(int argc, char **argv)
     }
   while (*argv[1])
     {
-      int nbrA = 0;
+      /*      int nbrA = 0;
       int nbrB = 0;
       new_node(nbrA);
-      new_node(nbrB);
+      new_node(nbrB);*/
+      int nbr = get_nbr(argv[1]);
+      printf("%d\n", nbr);
+      argv[1] += nbr_len(nbr); 
     }
 }
