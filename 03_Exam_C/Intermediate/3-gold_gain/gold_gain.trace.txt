@@ -1,0 +1,92 @@
+= Host-specific information ====================================================
+$> hostname; uname -msr
+e1z1r6p23.42.us.org
+Darwin 17.5.0 x86_64
+$> date
+Tue Jul 23 12:40:55 PDT 2019
+$> gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+$> clang --version
+Apple LLVM version 9.1.0 (clang-902.0.39.1)
+Target: x86_64-apple-darwin17.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+= User files collection ========================================================
+Collecting user files from Vogsphere
+Repository URL: auto-exam/2019/c-exam-alone-in-the-dark-intermediate/exam_20190723/khou
+
+= Git history ==================================================================
+$> git -C /var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user log --pretty='%H - %an, %ad : %s'
+af4d2ac0d034231c6bde1d2ade5c94134da42418 - Exam 42, Tue Jul 23 12:40:25 2019 -0700 : 4
+ba5cd9e37081dfda12106071f09eb96f9e30c97e - Exam 42, Tue Jul 23 11:03:45 2019 -0700 : 4
+b77b356c5553791a91b7a7f63949ad76211d2f80 - Exam 42, Tue Jul 23 10:28:39 2019 -0700 : 3
+9367042bc066967460c6f517b91596daa2ea7304 - Exam 42, Tue Jul 23 10:00:38 2019 -0700 : 2
+548e1e364ab844e31ea1a7221085c334566a45aa - Exam 42, Tue Jul 23 09:16:23 2019 -0700 : 1
+ 
+= Collected files ==========================================
+$> ls -lAR /var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user
+total 8
+-rw-r--r--  1 deepthought  deepthought  1281 Jul 23 12:40 __GIT_HISTORY
+drwxr-xr-x  3 deepthought  deepthought   102 Jul 23 12:40 equation
+drwxr-xr-x  4 deepthought  deepthought   136 Jul 23 12:40 flood_fill
+drwxr-xr-x  3 deepthought  deepthought   102 Jul 23 12:40 gold_gain
+drwxr-xr-x  3 deepthought  deepthought   102 Jul 23 12:40 perimeter
+drwxr-xr-x  3 deepthought  deepthought   102 Jul 23 12:40 reverse_tree
+
+/var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user/equation:
+total 8
+-rw-r--r--  1 deepthought  deepthought  1383 Jul 23 12:40 equation.c
+
+/var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user/flood_fill:
+total 16
+-rw-r--r--  1 deepthought  deepthought  1476 Jul 23 12:40 flood_fill.c
+-rw-r--r--  1 deepthought  deepthought   244 Jul 23 12:40 t_point.h
+
+/var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user/gold_gain:
+total 8
+-rw-r--r--  1 deepthought  deepthought  2451 Jul 23 12:40 gold_gain.c
+
+/var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user/perimeter:
+total 8
+-rw-r--r--  1 deepthought  deepthought  2271 Jul 23 12:40 perimeter.c
+
+/var/folders/q_/06blq9v13bx735qbljcs3b840000gp/T/tmpEOKKMk/user/reverse_tree:
+total 8
+-rw-r--r--  1 deepthought  deepthought  2176 Jul 23 12:40 reverse_tree.c
+ 
+= gold_gain ====================================================================
+$> gcc -Wextra -Wall -Werror gold_gain.c main.c -o user_exe 
+
+= Test 1 ===================================================
+$> ./pxg0vphptcpb13404pxkwqwv test_00.txt
+$> diff -U 3 user_output_test1 test1.output | cat -e
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./bdmofkearwke9qrch8djr3p5 test_01.txt
+$> diff -U 3 user_output_test2 test2.output | cat -e
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./fm22uo09eob3jbug1c3qjsus test_02.txt
+$> diff -U 3 user_output_test3 test3.output | cat -e
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./wdzxbjbti39u406gamz5tfl2 test_03.txt
+$> diff -U 3 user_output_test4 test4.output | cat -e
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./qsydvnh2412ga79kiodylaog test_04.txt
+$> diff -U 3 user_output_test5 test5.output | cat -e
+
+Diff OK :D
+Grade: 1
+
+= Final grade: 1 ===============================================================
