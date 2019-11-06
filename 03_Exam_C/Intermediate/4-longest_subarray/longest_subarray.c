@@ -1,80 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   longest_subarray.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/05 10:31:46 by exam              #+#    #+#             */
+/*   Updated: 2019/11/05 11:50:40 by exam             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 
-char *ft_strdup(char *str, int i, int j)
+char *ft_strdup(char *str, int beg, int l)
 {
-  int ret_len = j - i + 1;
-  char *ret = malloc(sizeof(char) * ret_len);
-
-  ret[ret_len] = '\0';
-  int n = 0;
-  while (i <= j)
-    {
-      ret[n] = str[i];
-      i++;
-      n++;
-    }
-  return (ret);
-}
-
-
-char    *longest_subarray(char *str)
-{
-  char *ret = NULL;
-  int nbr_odd = 0;
-  int nbr_even = 0;
-  int i = 0;
-  while (str[i])
-    {
-      if(str[i] % 2 == 0)
-	nbr_even++;
-      else
-	nbr_odd++;
-      i++;
-    }
-  int max_len = nbr_odd < nbr_even ? nbr_odd * 2 : nbr_even * 2;
-  int	str_len = nbr_odd + nbr_even;
-  i = 0;
-  while (max_len >= 2)
-    {
-      int beg = i;
-      int end = str_len - 1;
-      while (end - beg + 1 >= max_len)
+	char *ret = malloc(sizeof(char) * l);
+	ret[l-1] = '\0';
+	if (l == 1)
+		return (ret);
+	int i = 0;
+	while (i < l)
 	{
-	  int tmp_odd = nbr_odd;
-	  int tmp_even = nbr_even;
-	  int tmp = beg;
-	  int j = 0;
-	  while (j < beg)
-	    {
-	      if (str[j] % 2 == 0)
-		tmp_even--;
-	      else
-		tmp_odd--;
-	      j++;
-	    }
-	  j = end;
-	  while (j >= beg + max_len)
-	    {
-	      if (str[j] % 2 == 0)
-		tmp_even--;
-	      else
-		tmp_odd--;
-	      j--;
-	    }
-	  if (tmp_even == tmp_odd)
-	    return (ret = ft_strdup(str, beg, beg + max_len - 1));
-	  beg++;
+		ret[i] = str[beg];
+		i++;
+		beg++;
 	}
-      max_len--;
-    }
-  return (ret);
+	return (ret);
 }
+
+char    *longest_subarray(char *arr)
+{
+	int i = 0;
+	int nbr = 0;
+	int odd = 0, even = 0;
+	while (arr[i])
+	{
+		nbr = (int)(arr[i] - '0');
+		if (nbr % 2 == 0)
+			odd++;
+		else
+			even++;
+		i++;
+	}
+	int l_ret = odd > even ? even * 2 : odd * 2;
+	while (l_ret >= 2)
+	{
+		int beg = 0;
+		int end = strlen(arr) - 1;
+		while (beg <= end - l_ret + 1)
+		{
+			int cp_beg = beg;
+			int count = l_ret;
+			int odd_ret = 0, even_ret = 0;
+			while (count)
+			{
+				nbr = (int)(arr[cp_beg] - '0');
+				if (nbr % 2 == 0)
+					odd_ret++;
+				else
+					even_ret++;
+				cp_beg++;
+				count--;
+			}
+			if (odd_ret == even_ret)
+			{
+				return(ft_strdup(arr,beg,l_ret));
+			}
+			beg++;
+		}
+		l_ret--;
+	}
+	return (ft_strdup(arr, 0 , 1));
+}
+/*
+#include <stdio.h>
 
 int main()
 {
-  char *input = "1357913579024680213579";
+	char *str = NULL;
 
-  printf("%s\n", longest_subarray(input));
-
+	printf("output: %s\n", longest_subarray(str));
 }
+*/
